@@ -1,0 +1,47 @@
+{
+  "$comment": "Single source of truth for kirchner.cv. Every section renders only when it has entries; scripts/validate-cv.mjs refuses placeholder text and lists empty sections at build time. Fill this file, do not edit the pages.",
+  "name": "Joseph Kirchner",
+  "headline": "",
+  "location": "",
+  "email": "joseph@kirchner.cv",
+  "pdf": "",
+  "links": [
+    { "label": "lawsofexistence.com", "url": "https://lawsofexistence.com" }
+  ],
+  "summary": "",
+  "experience": [],
+  "education": [],
+  "skills": [],
+  "works": [
+    {
+      "title": "The Codified Democratic Order",
+      "year": "2026",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "title": "The Fundamental Laws: Formal Logic & Falsification",
+      "year": "2025",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "title": "Unified Mathematical Model",
+      "year": "2025",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "title": "Transcendental Method for Substrate-Independent Consciousness Recognition",
+      "year": "2025",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "title": "Abrahamic Faith Reconciliation Thesis",
+      "year": "2025",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    }
+  ]
+}
