@@ -58,6 +58,16 @@ if (!cv.pdf) warnings.push('pdf is empty (no CV viewer or download rendered)');
 if (!cv.portrait) warnings.push('portrait is empty (monogram placeholder rendered)');
 if (!works.length) warnings.push('works.json is empty (Work section not rendered)');
 
+// research archives: every manifest-listed image and PDF must exist
+for (const id of ['stac-8-203-38', 'hls-ms149-floyd']) {
+  const base = new URL(`../public/uploads/research/${id}/`, import.meta.url);
+  let m;
+  try { m = JSON.parse(readFileSync(new URL('manifest.json', base), 'utf8')); } catch { errors.push(`research/${id}: manifest.json missing`); continue; }
+  for (const l of m.leaves) for (const f of [l.image, l.thumb, l.web].filter(Boolean)) if (!existsSync(new URL(f, base))) errors.push(`research/${id}: ${f} missing`);
+  for (const l of m.leaves) for (const d of l.docs) if (!existsSync(new URL(d.pdf, base))) errors.push(`research/${id}: ${d.pdf} missing`);
+  for (const p of m.workingPapers) if (!existsSync(new URL(p.pdf, base))) errors.push(`research/${id}: ${p.pdf} missing`);
+}
+
 for (const w of warnings) console.warn(`validate-cv: warning: ${w}`);
 if (errors.length) { for (const e of errors) console.error(`validate-cv: error: ${e}`); process.exit(1); }
 console.log(`validate-cv: ok (${warnings.length} warning${warnings.length === 1 ? '' : 's'})`);

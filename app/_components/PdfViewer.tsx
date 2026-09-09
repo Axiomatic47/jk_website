@@ -8,12 +8,16 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Download, ExternalLink, FileText, Loader2, ZoomIn, ZoomOut } from 'lucide-react';
 import type { PDFDocumentProxy, RenderTask } from 'pdfjs-dist';
+import { cn } from '@/lib/cn';
 
 interface PdfViewerProps {
   src: string;
   title: string;
   /** file name offered by the Download button */
   downloadName?: string;
+  /** 'page' (default): the well is one page tall at fit width. 'fill': the
+      viewer stretches to its flex parent (review layouts). */
+  height?: 'page' | 'fill';
 }
 
 const MAX_BACKING_WIDTH = 3000;
@@ -21,7 +25,7 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number };
 
-export function PdfViewer({ src, title, downloadName }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadName, height = 'page' }: PdfViewerProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -151,8 +155,10 @@ export function PdfViewer({ src, title, downloadName }: PdfViewerProps) {
 
   const btn = 'inline-flex items-center gap-2 h-9 px-3 rounded-md text-sm border border-rule bg-card text-ink hover:bg-well transition-colors disabled:opacity-40 disabled:hover:bg-card no-underline';
 
+  const wellStyle = height === 'fill' ? undefined : { height: wellHeight };
+  const wellFill = height === 'fill' ? 'flex-1 min-h-0' : '';
   return (
-    <div className="flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden">
+    <div className={cn('flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')}>
       {/* toolbar */}
       <div className="flex flex-wrap items-center gap-2 px-3 py-2 border-b border-rule bg-card no-print">
         <div className="inline-flex items-center rounded-md border border-rule bg-well">
@@ -179,14 +185,14 @@ export function PdfViewer({ src, title, downloadName }: PdfViewerProps) {
 
       {/* well */}
       {error ? (
-        <div className="flex items-center justify-center p-8 text-sm text-muted bg-well" style={{ height: wellHeight }}>
+        <div className={cn('flex items-center justify-center p-8 text-sm text-muted bg-well', wellFill)} style={wellStyle}>
           <span>
             The document could not be rendered ({error}).{' '}
             <a href={src} target="_blank" rel="noopener noreferrer" className="text-accent-ink underline">Open the PDF directly</a>.
           </span>
         </div>
       ) : (
-        <div ref={scrollRef} className="overflow-auto overscroll-contain bg-well" style={{ height: wellHeight }}>
+        <div ref={scrollRef} className={cn('overflow-auto overscroll-contain bg-well', wellFill)} style={wellStyle}>
           {pages.length === 0 ? (
             <div className="flex items-center justify-center h-full min-h-[16rem]">
               <Loader2 className="h-6 w-6 animate-spin text-accent" />
