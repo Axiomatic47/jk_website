@@ -14,8 +14,6 @@ interface PdfViewerProps {
   title: string;
   /** file name offered by the Download button */
   downloadName?: string;
-  /** viewer well height, e.g. "h-[78vh]" */
-  className?: string;
 }
 
 const MAX_BACKING_WIDTH = 3000;
@@ -23,7 +21,7 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number };
 
-export function PdfViewer({ src, title, downloadName, className = 'h-[78vh]' }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadName }: PdfViewerProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -37,6 +35,9 @@ export function PdfViewer({ src, title, downloadName, className = 'h-[78vh]' }: 
 
   // page CSS width = pane width × zoom (100% = fit to width)
   const pageWidth = Math.max(0, Math.floor((paneWidth - 24) * (zoom / 100)));
+  // the well is exactly one page tall at fit width (owner 2026-09-09) so the
+  // page footer stays in reach; the document scrolls inside the well
+  const wellHeight = pages.length && paneWidth ? Math.round((paneWidth - 24) * pages[0].aspect + 24) : 640;
 
   useEffect(() => {
     let cancelled = false;
@@ -178,14 +179,14 @@ export function PdfViewer({ src, title, downloadName, className = 'h-[78vh]' }: 
 
       {/* well */}
       {error ? (
-        <div className={`flex items-center justify-center p-8 text-sm text-muted bg-well ${className}`}>
+        <div className="flex items-center justify-center p-8 text-sm text-muted bg-well" style={{ height: wellHeight }}>
           <span>
             The document could not be rendered ({error}).{' '}
             <a href={src} target="_blank" rel="noopener noreferrer" className="text-accent-ink underline">Open the PDF directly</a>.
           </span>
         </div>
       ) : (
-        <div ref={scrollRef} className={`overflow-auto overscroll-contain bg-well ${className}`}>
+        <div ref={scrollRef} className="overflow-auto overscroll-contain bg-well" style={{ height: wellHeight }}>
           {pages.length === 0 ? (
             <div className="flex items-center justify-center h-full min-h-[16rem]">
               <Loader2 className="h-6 w-6 animate-spin text-accent" />
@@ -208,11 +209,9 @@ export function PdfViewer({ src, title, downloadName, className = 'h-[78vh]' }: 
       {/* hint bar */}
       <div className="flex items-center gap-3 px-3 py-2 border-t border-rule text-xs text-muted no-print">
         <FileText className="h-3.5 w-3.5 text-accent" />
-        <span>PDF document</span>
+        <span>PDF</span>
         <span className="text-rule">•</span>
         <span>{pages.length ? `${pages.length} page${pages.length === 1 ? '' : 's'}` : 'Loading'}</span>
-        <span className="text-rule">•</span>
-        <span>Scroll to read · zoom fits the page to the pane at 100%</span>
       </div>
     </div>
   );

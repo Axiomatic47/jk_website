@@ -16,7 +16,7 @@ export function SiteHeader() {
     <header className="bg-ink text-on-ink no-print">
       <div className="mx-auto max-w-site px-5 sm:px-8 h-16 flex items-center justify-between gap-6">
         <Link href="/" className="font-serif text-xl tracking-tight no-underline" style={{ fontWeight: 560 }}>
-          {cv.name.split(' ')[0]}
+          {cv.name.split(' ').slice(-1)[0]}
           <span className="text-accent">.</span>
           cv
         </Link>

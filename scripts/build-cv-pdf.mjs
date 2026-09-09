@@ -14,7 +14,7 @@ const INK = '#1b2540', MUTED = '#5f6673', RULE = '#d8d2c4', ACCENT = '#8a6b3a';
 const doc = new PDFDocument({
   size: 'LETTER',
   margins: { top: 60, bottom: 60, left: 64, right: 64 },
-  info: { Title: `${cv.name} — Curriculum Vitae`, Author: cv.name, Subject: cv.headline || 'Curriculum Vitae' },
+  info: { Title: cv.name, Author: cv.name, Subject: cv.headline || '' },
 });
 doc.pipe(createWriteStream(outPath));
 const W = doc.page.width - doc.page.margins.left - doc.page.margins.right;

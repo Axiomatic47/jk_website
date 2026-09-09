@@ -17,9 +17,10 @@ export function SiteFooter() {
               {l.label}
             </a>
           ))}
-          <Link href="/contact" className="hover:text-white no-underline">
-            Contact
-          </Link>
+          <Link href="/contact" className="hover:text-white no-underline">Contact</Link>
+          <Link href="/legal" className="hover:text-white no-underline">Legal</Link>
+          <Link href="/terms" className="hover:text-white no-underline">Terms</Link>
+          <Link href="/privacy" className="hover:text-white no-underline">Privacy</Link>
         </div>
       </div>
     </footer>

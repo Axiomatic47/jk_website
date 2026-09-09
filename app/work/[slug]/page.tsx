@@ -37,18 +37,13 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           <h1 className="font-serif text-3xl leading-tight" style={{ fontWeight: 620 }}>{w.title}</h1>
           {w.subtitle && <p className="font-serif text-xl text-muted mt-2 leading-snug">{w.subtitle}</p>}
           {w.blurb && <p className="text-sm leading-relaxed text-ink/85 mt-4">{w.blurb}</p>}
-          {w.source && (
-            <p className="text-sm mt-4">
-              <a href={w.source} rel="noopener" className="text-accent-ink underline">First published at lawsofexistence.com</a>
-            </p>
-          )}
           <nav aria-label="Other pieces" className="mt-6 pt-4 border-t border-rule flex justify-between gap-3 text-sm">
             {prev ? <Link href={`/work/${prev.slug}`} className="text-muted hover:text-ink no-underline">← {prev.title}</Link> : <span />}
             {next ? <Link href={`/work/${next.slug}`} className="text-muted hover:text-ink no-underline text-right">{next.title} →</Link> : <span />}
           </nav>
         </aside>
         <section className="min-w-0">
-          <PdfViewer src={w.pdf} title={w.title} downloadName={w.pdf.split('/').pop()} className="h-[80vh]" />
+          <PdfViewer src={w.pdf} title={w.title} downloadName={w.pdf.split('/').pop()} />
         </section>
       </div>
     </SiteShell>
