@@ -32,6 +32,8 @@ export interface CV {
   location: string;
   email: string;
   pdf: string;
+  portrait: string;      // site-relative image under public/, or ""
+  availability: string;  // short badge text, or ""
   links: Link[];
   summary: string;
   experience: Experience[];

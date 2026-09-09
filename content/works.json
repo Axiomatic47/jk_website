@@ -1,0 +1,63 @@
+{
+  "$comment": "Selected pieces presented in the site viewer. PDFs live under public/works/ and are the published copies from lawsofexistence.com. Order = display order.",
+  "works": [
+    {
+      "slug": "declaration-of-humanity",
+      "title": "The Declaration of Humanity",
+      "subtitle": "An Inclusive Definition and Its Operational Necessity",
+      "year": "2026",
+      "venue": "The Codified Democratic Order",
+      "blurb": "Shifts from assertion-form articulations of universal rights to a definitional-form premise: humanity is every person, family, people, and nation, without exception.",
+      "pdf": "/works/declaration-of-humanity.pdf",
+      "source": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "slug": "fundamental-laws",
+      "title": "The Fundamental Laws of Supremacism and Egalitarianism",
+      "year": "2026",
+      "venue": "The Codified Democratic Order",
+      "blurb": "The axiomatic substrate of the framework: sustained conflict necessarily implies a supremacist claim, and fully maintained parity forecloses it.",
+      "pdf": "/works/fundamental-laws-supremacism-egalitarianism.pdf",
+      "source": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "slug": "madisonian-test",
+      "title": "The Madisonian Separation of Powers Objective Compliance Test",
+      "year": "2026",
+      "venue": "The Codified Democratic Order",
+      "blurb": "Recovers Madison's framework and derives a six-step objective compliance test for separation-of-powers violations, validated against 36 Supreme Court decisions spanning 154 years.",
+      "pdf": "/works/madisonian-separation-of-powers-test.pdf",
+      "source": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "slug": "means-not-views",
+      "title": "Means, Not Views",
+      "subtitle": "The Constitutional Distinction Between Radicalism and Extremism",
+      "year": "2026",
+      "venue": "The Codified Democratic Order",
+      "blurb": "Defends the First Amendment distinction between radicalism, which challenges through constitutional means, and extremism, which uses unconstitutional means. The line is drawn at means, not views.",
+      "pdf": "/works/means-not-views-radicalism-extremism-distinction.pdf",
+      "source": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "slug": "bodily-jurisdiction",
+      "title": "Bodily Jurisdiction",
+      "subtitle": "The Floor of Constitutional Authority",
+      "year": "2026",
+      "venue": "The Codified Democratic Order",
+      "blurb": "Restates bodily autonomy structurally rather than as a balanceable right: the body is a sovereign jurisdictional sphere and the floor of the constitutional architecture.",
+      "pdf": "/works/bodily-jurisdiction-framework.pdf",
+      "source": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "slug": "rejection-of-law",
+      "title": "The Rejection of Law",
+      "subtitle": "Treaty Defection, State Secession, and the Fractal Constitution",
+      "year": "2026",
+      "venue": "The Codified Democratic Order",
+      "blurb": "Argues that the principle forbidding state secession is structurally identical to the principle that treaty 'unsigning' violates, and that selective enforcement is the rejection of law itself.",
+      "pdf": "/works/rejection-of-law.pdf",
+      "source": "https://lawsofexistence.com/composition/manuscript"
+    }
+  ]
+}

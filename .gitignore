@@ -10,3 +10,6 @@ out/
 # Source documents (personal data: address, phone, references) — never committed
 *.docx
 *.doc
+
+# Generated at build by scripts/build-cv-pdf.mjs
+public/cv/
