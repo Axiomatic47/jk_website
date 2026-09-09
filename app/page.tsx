@@ -66,7 +66,7 @@ export default function About() {
           {cv.summary && <p className="font-serif text-lg leading-relaxed text-ink/90 max-w-3xl mb-8">{cv.summary}</p>}
 
           {cv.pdf ? (
-            <PdfViewer src={cv.pdf} title={`${cv.name} — Curriculum Vitae`} downloadName={cv.pdf.split('/').pop()} className="h-[78vh]" />
+            <PdfViewer src={cv.pdf} title={cv.name} downloadName={cv.pdf.split('/').pop()} />
           ) : null}
         </section>
       </div>

@@ -11,5 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_ORIGIN}/work`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     ...works.map((w) => ({ url: `${SITE_ORIGIN}/work/${w.slug}`, lastModified: now, changeFrequency: 'yearly' as const, priority: 0.6 })),
     { url: `${SITE_ORIGIN}/contact`, lastModified: now, changeFrequency: 'yearly', priority: 0.5 },
+    ...['legal', 'terms', 'privacy'].map((p) => ({ url: `${SITE_ORIGIN}/${p}`, lastModified: now, changeFrequency: 'yearly' as const, priority: 0.2 })),
   ];
 }
