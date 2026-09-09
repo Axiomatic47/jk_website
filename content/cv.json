@@ -1,0 +1,161 @@
+{
+  "$comment": "Single source of truth for kirchner.cv. Every section renders only when it has entries; scripts/validate-cv.mjs refuses placeholder text and lists empty sections at build time. Fill this file, do not edit the pages.",
+  "name": "Joseph Kirchner",
+  "headline": "Regional Property Manager · Operations Consultant",
+  "location": "Minneapolis–Saint Paul, Minnesota",
+  "email": "joseph@kirchner.cv",
+  "pdf": "",
+  "links": [
+    {
+      "label": "lawsofexistence.com",
+      "url": "https://lawsofexistence.com"
+    }
+  ],
+  "summary": "Property-management professional and independent researcher. Since 2019 I have worked across leasing, renewals, and site management in the Twin Cities, and since 2023 I have managed a regional HUD-assisted portfolio spanning five states. Alongside that work I run a small-business consultancy, and I write and publish research through The Laws of Existence. I am proficient in AppFolio, Yardi, OneSite, and most standard office software, and I bring a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.",
+  "experience": [
+    {
+      "role": "Regional Property Manager",
+      "organization": "Accessible Space, Inc.",
+      "location": "St. Paul, MN",
+      "start": "2023",
+      "end": "",
+      "summary": "Management of 24 HUD PRAC 202/811 properties, 525 units across five states.",
+      "highlights": [
+        "Hiring and training of on-site staff",
+        "Development and monitoring of annual budgets",
+        "Supervision of delinquent-rent collection",
+        "Resident annual recertifications and site maintenance"
+      ]
+    },
+    {
+      "role": "Property Manager",
+      "organization": "Premier Housing Management",
+      "location": "St. Paul, MN",
+      "start": "2022",
+      "end": "2023",
+      "highlights": [
+        "Team leadership and policy and procedure development",
+        "Section 8 and tax-credit compliance",
+        "Leasing, tenant relations, and maintenance coordination and scheduling"
+      ]
+    },
+    {
+      "role": "Owner",
+      "organization": "Operations Consulting LLC",
+      "location": "Minneapolis, MN",
+      "start": "2021",
+      "end": "",
+      "summary": "Small-business consulting for long-term and short-term clients; part-time since November 2022.",
+      "highlights": [
+        "Daily operations management for a bar and restaurant, food truck, salon, warehouse, and pizzeria",
+        "Operational analysis, licensing, fundraising, payroll, hiring and training",
+        "Business organization and website construction for small-business owners"
+      ]
+    },
+    {
+      "role": "Lease Renewal Specialist",
+      "organization": "Housing Hub",
+      "location": "St. Paul, MN",
+      "start": "2019",
+      "end": "2021",
+      "highlights": [
+        "Market analyses for renewal rate increases",
+        "Renewal authorizations with third-party ownership",
+        "Drafting, sending, and processing lease renewals"
+      ]
+    },
+    {
+      "role": "Community Coordinator",
+      "organization": "Lion Rock Properties",
+      "location": "St. Louis Park, MN",
+      "start": "2019",
+      "end": "2019",
+      "highlights": [
+        "Scheduling and performing tours and lease signings",
+        "Conveying rights and responsibilities between clients and tenants",
+        "Maintenance scheduling and general office work"
+      ]
+    },
+    {
+      "role": "Instructor",
+      "organization": "École Française",
+      "location": "Hurghada, Egypt",
+      "start": "2017",
+      "end": "2018",
+      "highlights": [
+        "English instruction and curriculum composition for primary and secondary students"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "",
+      "institution": "University of Minnesota Duluth",
+      "location": "Duluth, MN",
+      "year": "2009 – 2014"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Property management",
+      "items": [
+        "HUD PRAC 202/811",
+        "Section 8 and tax-credit compliance",
+        "Leasing and renewals",
+        "Budgeting",
+        "Recertifications"
+      ]
+    },
+    {
+      "group": "Software",
+      "items": [
+        "AppFolio",
+        "Yardi",
+        "OneSite",
+        "Standard office software"
+      ]
+    },
+    {
+      "group": "Operations",
+      "items": [
+        "Team leadership",
+        "Hiring and training",
+        "Policy and procedure development",
+        "Licensing",
+        "Payroll"
+      ]
+    }
+  ],
+  "works": [
+    {
+      "title": "The Codified Democratic Order",
+      "year": "2026",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "title": "The Fundamental Laws: Formal Logic & Falsification",
+      "year": "2025",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "title": "Unified Mathematical Model",
+      "year": "2025",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "title": "Transcendental Method for Substrate-Independent Consciousness Recognition",
+      "year": "2025",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    },
+    {
+      "title": "Abrahamic Faith Reconciliation Thesis",
+      "year": "2025",
+      "venue": "The Laws of Existence",
+      "url": "https://lawsofexistence.com/composition/manuscript"
+    }
+  ]
+}
