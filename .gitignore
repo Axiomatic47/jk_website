@@ -13,3 +13,6 @@ out/
 
 # Generated at build by scripts/build-cv-pdf.mjs
 public/cv/
+
+# Coordination ledgers (Studio signed-push card reads them locally; never committed — matches loe_website)
+.claude/

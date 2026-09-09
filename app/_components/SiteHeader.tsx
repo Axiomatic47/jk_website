@@ -6,6 +6,7 @@ import { cv } from '@/lib/cv';
 const NAV = [
   { href: '/', label: 'About' },
   { href: '/work', label: 'Work' },
+  { href: '/research', label: 'Research' },
   { href: '/contact', label: 'Contact' },
 ];
 

@@ -2,7 +2,7 @@
   "name": "jk-website",
   "version": "0.1.0",
   "private": true,
-  "description": "kirchner.cv \u2014 Joseph Kirchner's CV and professional site (static Next.js export on Netlify)",
+  "description": "kirchner.cv — Joseph Kirchner's CV and professional site (static Next.js export on Netlify)",
   "scripts": {
     "dev": "next dev",
     "validate-cv": "node scripts/validate-cv.mjs",
@@ -18,7 +18,9 @@
     "pdfjs-dist": "^6.3.289",
     "pdfkit": "^0.20.2",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
