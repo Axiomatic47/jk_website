@@ -29,7 +29,7 @@ for (const [i, e] of (cv.experience ?? []).entries()) {
   for (const k of ['role', 'organization', 'start']) if (!e[k]?.trim()) errors.push(`experience[${i}].${k} missing`);
 }
 for (const [i, e] of (cv.education ?? []).entries()) {
-  for (const k of ['degree', 'institution']) if (!e[k]?.trim()) errors.push(`education[${i}].${k} missing`);
+  if (!e.institution?.trim()) errors.push(`education[${i}].institution missing`);
 }
 for (const [i, g] of (cv.skills ?? []).entries()) {
   if (!g.group?.trim() || !Array.isArray(g.items) || g.items.length === 0) errors.push(`skills[${i}] needs group + items`);

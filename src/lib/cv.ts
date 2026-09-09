@@ -12,8 +12,9 @@ export interface Experience {
   highlights?: string[];
 }
 export interface Education {
-  degree: string;
+  degree?: string;      // omit or "" when no degree is listed
   institution: string;
+  location?: string;
   year?: string;
   detail?: string;
 }
@@ -44,5 +45,6 @@ export const cv: CV = raw as unknown as CV;
 export const SITE_ORIGIN = 'https://kirchner.cv';
 
 export function dateRange(e: Experience): string {
-  return e.end ? `${e.start} – ${e.end}` : `${e.start} – present`;
+  if (!e.end) return `${e.start} – present`;
+  return e.end === e.start ? e.start : `${e.start} – ${e.end}`;
 }

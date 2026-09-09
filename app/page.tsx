@@ -78,13 +78,19 @@ export default function Home() {
         <Section title="Education">
           <ul className="space-y-5">
             {cv.education.map((e) => (
-              <li key={`${e.institution}-${e.degree}`} className="grid sm:grid-cols-[9rem_1fr] gap-x-6 gap-y-1">
+              <li key={`${e.institution}-${e.degree ?? ""}-${e.year ?? ""}`} className="grid sm:grid-cols-[9rem_1fr] gap-x-6 gap-y-1">
                 <div className="text-sm text-muted tabular-nums">{e.year ?? ''}</div>
                 <div>
                   <h3 className="font-serif text-xl" style={{ fontWeight: 560 }}>
-                    {e.degree}
+                    {e.degree || e.institution}
                   </h3>
-                  <p className="text-muted">{e.institution}</p>
+                  {e.degree && (
+                    <p className="text-muted">
+                      {e.institution}
+                      {e.location ? ` · ${e.location}` : ''}
+                    </p>
+                  )}
+                  {!e.degree && e.location && <p className="text-muted">{e.location}</p>}
                   {e.detail && <p className="mt-1 leading-relaxed">{e.detail}</p>}
                 </div>
               </li>

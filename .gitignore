@@ -6,3 +6,7 @@ out/
 .env
 .env.*
 .netlify/
+
+# Source documents (personal data: address, phone, references) — never committed
+*.docx
+*.doc
