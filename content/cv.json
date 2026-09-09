@@ -4,7 +4,7 @@
   "headline": "Regional Property Manager · Operations Consultant",
   "location": "Minneapolis–Saint Paul, Minnesota",
   "email": "joseph@kirchner.cv",
-  "pdf": "",
+  "pdf": "/cv/Joseph_Kirchner_CV.pdf",
   "links": [
     {
       "label": "lawsofexistence.com",
@@ -157,5 +157,7 @@
       "venue": "The Laws of Existence",
       "url": "https://lawsofexistence.com/composition/manuscript"
     }
-  ]
+  ],
+  "availability": "Open to opportunities",
+  "portrait": ""
 }
