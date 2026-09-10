@@ -26,7 +26,18 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const STORE_NAME = 'open-readings';
-const LOCAL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '.cache', 'readings-store');
+
+// The local directory is resolved LAZILY and defensively. Netlify bundles a
+// legacy handler(event) function to CommonJS, where `import.meta.url` is
+// undefined; a module-level fileURLToPath(import.meta.url) threw at load and the
+// function never ran (measured in the function log 2026-09-10 06:32: "The path
+// argument must be of type string or an instance of URL. Received undefined",
+// Phase: init). Nothing on Netlify ever needs this path.
+function localDir() {
+  if (process.env.READINGS_STORE_DIR) return process.env.READINGS_STORE_DIR;
+  const here = typeof import.meta !== 'undefined' && import.meta.url ? dirname(fileURLToPath(import.meta.url)) : process.cwd();
+  return join(here, import.meta.url ? '../../.cache/readings-store' : '.cache/readings-store');
+}
 
 // Where are we? A Netlify FUNCTION (Lambda) must use Blobs — the runtime
 // configures it; if that fails the error must surface in the function log, not
@@ -49,7 +60,7 @@ const wrapBlobs = s => ({
   async list(prefix) { const { blobs } = await s.list({ prefix }); return blobs.map(b => b.key); },
 });
 
-function localStore(dir = LOCAL_DIR, readonly = false) {
+function localStore(dir = localDir(), readonly = false) {
   const file = key => join(dir, key.replace(/\//g, '__') + '.json');
   return {
     kind: readonly ? 'local-empty' : `local:${dir}`,
@@ -71,8 +82,8 @@ export async function openStore() {
     try { return wrapBlobs(await blobStore()); }
     catch (e) {
       console.warn(`readings-store: WARNING — Netlify build without Blobs access (${e.message}). Approved answers are NOT available to this build.`);
-      return localStore(LOCAL_DIR, true);
+      return localStore(localDir(), true);
     }
   }
-  return localStore(process.env.READINGS_STORE_DIR || LOCAL_DIR);
+  return localStore(localDir());
 }
