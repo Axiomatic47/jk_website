@@ -47,11 +47,22 @@ function localDir() {
 const inFunction = () => Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext);
 const inBuild = () => process.env.NETLIFY === 'true' && !inFunction();
 
+function contextHasUncachedEdge() {
+  try {
+    const raw = process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext;
+    return raw ? Boolean(JSON.parse(Buffer.from(raw, 'base64').toString('utf8')).uncachedEdgeURL) : false;
+  } catch { return false; }
+}
+
 async function blobStore() {
   const { getStore } = await import('@netlify/blobs');
-  // Strong consistency: a moderation queue must show a record the moment the
-  // event function wrote it; the default (eventual) may lag reads by up to a minute.
-  return getStore({ name: STORE_NAME, consistency: 'strong' }); // the runtime's own credentials; throws a descriptive error when they are absent
+  // Strong consistency where the runtime supports it: a moderation queue must list
+  // a record the moment the event function wrote it, and the default (eventual)
+  // may lag reads by up to a minute. Strong reads need the context's
+  // uncachedEdgeURL, which the modern (Request) runtime supplies and the legacy
+  // handler(event) context from connectLambda does NOT — asking for it there
+  // fails every read (measured 2026-09-10). So: strong when available, else default.
+  return getStore(contextHasUncachedEdge() ? { name: STORE_NAME, consistency: 'strong' } : STORE_NAME); // the runtime's own credentials; throws a descriptive error when they are absent
 }
 
 const wrapBlobs = s => ({
