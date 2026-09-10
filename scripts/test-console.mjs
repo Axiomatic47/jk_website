@@ -88,5 +88,23 @@ const pp2 = await admin(new Request('https://kirchner.cv/admin/passphrase', { me
 await check('passphrase: POST answers 404 once Auth0 is configured', () => assert.equal(pp2.status, 404));
 await check('auth: config complete', () => assert.equal(authConfig().missing.length, 0));
 
+// ---- 6. the deployed shape: Netlify bundles a legacy handler(event) function to
+// CommonJS, where import.meta.url is undefined. A module-level path computed from
+// it crashed the function at init (function log 2026-09-10 06:32). Bundle exactly
+// that way and require the result.
+{
+  const { execFileSync } = await import('node:child_process');
+  const { createRequire } = await import('node:module');
+  const out = join(dir, 'submission-created.cjs');
+  execFileSync(join(process.cwd(), 'node_modules', '.bin', 'esbuild'), ['netlify/functions/submission-created.mjs', '--bundle', '--platform=node', '--format=cjs', `--outfile=${out}`, '--log-level=error']);
+  const cjsStore = join(dir, 'cjs-store'); process.env.READINGS_STORE_DIR = cjsStore;
+  let mod, loadErr = null;
+  try { mod = createRequire(import.meta.url)(out); } catch (e) { loadErr = e; }
+  await check('bundle: the CommonJS bundle of submission-created loads (no import.meta.url at module level)', () => assert.equal(loadErr, null, loadErr?.message));
+  const r = mod ? await quiet(() => mod.handler({ body: JSON.stringify({ payload: { ...payload, id: 'cjs-1' } }) })) : null;
+  await check('bundle: the CommonJS bundle queues a submission', () => assert.equal(r?.body, 'queued'));
+  process.env.READINGS_STORE_DIR = dir;
+}
+
 rmSync(dir, { recursive: true, force: true });
 console.log(process.exitCode ? `\n${n} checks — FAILURES above` : `\n${n} checks passed`);
