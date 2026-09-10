@@ -13,8 +13,9 @@ export default function Privacy() {
         <H2>What the site collects</H2>
         <UL>
           <li>
-            <strong>Nothing you type.</strong> The site has no forms, accounts, comments, or sign-ups. The only way to
-            reach the author is email, and what you send by email is handled like any other correspondence.
+            <strong>Almost nothing you type.</strong> The site has no accounts, comments, or sign-ups. Its one form is the
+            Open Readings answer form on the research pages, described below. Otherwise the only way to reach the author
+            is email, and what you send by email is handled like any other correspondence.
           </li>
           <li>
             <strong>No analytics, no trackers, no cookies.</strong> The site loads no third-party scripts, fonts, or
@@ -30,6 +31,17 @@ export default function Privacy() {
             this site and rendered locally. Nothing about what you read is sent anywhere.
           </li>
         </UL>
+        <H2>Answering an open reading</H2>
+        <P>
+          The research pages invite qualified readers to answer disputed manuscript readings. The answer form collects
+          your answer, an optional note, your name and credentials, and an email address unless you tick that you would
+          rather not be contacted. Submissions are stored by Netlify, the site&rsquo;s host, in its form service in the
+          United States, and queued privately for the author&rsquo;s review. Your email address is never published. If you
+          chose to have your answer published, the author reviews it first and then publishes the answer with the name
+          and credentials summary you consented to, or as &ldquo;anonymous reader&rdquo; if you asked. Answers sent to the
+          author only stay in the private record. Write to {cv.email} to withdraw a published answer or to have your
+          submission deleted.
+        </P>
         <H2>Email</H2>
         <P>
           Messages sent to {cv.email} are delivered to the author&rsquo;s mailbox, hosted by Zoho Mail, and kept as

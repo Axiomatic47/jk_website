@@ -16,3 +16,6 @@ public/cv/
 
 # Coordination ledgers (Studio signed-push card reads them locally; never committed — matches loe_website)
 .claude/
+
+# Open Readings local queue (dev stand-in for Netlify Blobs)
+.cache/

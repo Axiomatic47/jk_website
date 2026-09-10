@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import {ARCHIVE_IDS, RESEARCH_ARCHIVES, archiveBase } from '@/lib/research-archive';
 import { readArchiveManifest } from '@/lib/research-archive.server';
+import { loadAllReadings } from '@/lib/open-readings.server';
 import { SiteShell } from '../_components/SiteShell';
 import { Md } from '../_components/Markdown';
 
@@ -13,6 +14,9 @@ export const metadata: Metadata = {
 };
 
 export default function ResearchIndex() {
+  const readings = loadAllReadings();
+  const readingCount = readings.reduce((n, c) => n + c.items.length, 0);
+  const openCount = readings.reduce((n, c) => n + c.items.filter((i) => i.status === 'open').length, 0);
   return (
     <SiteShell>
       <header className="mb-10 max-w-3xl">
@@ -54,6 +58,21 @@ export default function ResearchIndex() {
           );
         })}
       </ul>
+
+      {readingCount > 0 && (
+        <section className="mt-12">
+          <p className="text-xs uppercase tracking-[0.14em] text-muted mb-3" style={{ fontWeight: 600 }}>Readings for review</p>
+          <Link href="/research/open-readings" className="group flex flex-wrap items-center justify-between gap-4 rounded-lg border border-rule bg-ink text-on-ink shadow-card p-6 no-underline hover:bg-ink-2 transition-colors">
+            <div className="min-w-0">
+              <h2 className="font-serif text-2xl leading-snug" style={{ fontWeight: 560 }}>Open Readings</h2>
+              <p className="text-sm text-on-ink/80 mt-2 max-w-2xl">
+                Disputed manuscript readings set out for qualified readers: the detail enlarged, our transcription beside the comparison edition, one question, and an answer form.
+              </p>
+            </div>
+            <span className="text-sm text-accent inline-flex items-center gap-1 shrink-0">{readingCount} reading{readingCount === 1 ? '' : 's'} · {openCount} open <ArrowRight className="h-4 w-4" /></span>
+          </Link>
+        </section>
+      )}
     </SiteShell>
   );
 }
