@@ -51,7 +51,7 @@ async function importFromForms(store) {
 /** counts for the console home */
 export async function readingsCounts() {
   const store = await openStore();
-  return { pending: (await store.list('pending/')).length, approved: (await store.list('approved/')).length };
+  return { kind: store.kind, pending: (await store.list('pending/')).length, approved: (await store.list('approved/')).length };
 }
 
 /** GET/POST /admin/readings — `ctx` = { sess, csrf, csrfOk(given) } */

@@ -20,21 +20,32 @@ import { fileURLToPath } from 'node:url';
 export const STORE_NAME = 'open-readings';
 const LOCAL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '.cache', 'readings-store');
 
-function onNetlify() {
-  return Boolean(process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext || (process.env.NETLIFY === 'true' && process.env.SITE_ID && process.env.NETLIFY_AUTH_TOKEN));
-}
+// Where are we? A Netlify FUNCTION (Lambda) must use Blobs — the runtime
+// configures it; if that fails the error must surface in the function log, not
+// vanish into a read-only local directory. A Netlify BUILD uses Blobs when the
+// runtime context or SITE_ID + NETLIFY_AUTH_TOKEN is present, and otherwise
+// warns and reads an empty local store so the build still succeeds.
+const inFunction = () => Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext);
+const inBuild = () => process.env.NETLIFY === 'true' && !inFunction();
 
 async function blobStore() {
   const { getStore } = await import('@netlify/blobs');
   if (process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext) return getStore(STORE_NAME);
-  return getStore({ name: STORE_NAME, siteID: process.env.SITE_ID, token: process.env.NETLIFY_AUTH_TOKEN });
+  if (process.env.SITE_ID && process.env.NETLIFY_AUTH_TOKEN) return getStore({ name: STORE_NAME, siteID: process.env.SITE_ID, token: process.env.NETLIFY_AUTH_TOKEN });
+  return getStore(STORE_NAME); // throws a descriptive error when the environment is not configured
 }
 
 /** returns { get(key), set(key, obj), del(key), list(prefix) → keys[] } */
 export async function openStore() {
-  if (onNetlify()) {
-    const s = await blobStore();
-    return {
+  if (inFunction() || inBuild()) {
+    let s;
+    try { s = await blobStore(); }
+    catch (e) {
+      if (inFunction()) throw e;
+      console.warn(`readings-store: Netlify Blobs unavailable in this build (${e.message}); using an empty local store.`);
+      s = null;
+    }
+    if (s) return {
       kind: 'blobs',
       async get(key) { return (await s.get(key, { type: 'json' })) ?? null; },
       async set(key, obj) { await s.setJSON(key, obj); },
