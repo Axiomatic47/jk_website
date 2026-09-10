@@ -26,7 +26,8 @@ if (!existsSync(DIR)) {
   console.log('readings validation PASSED — no content/readings directory.');
   process.exit(0);
 }
-const files = readdirSync(DIR).filter(f => f.endsWith('.json'));
+// Underscore-prefixed files are build products (_store-export.json), never collections.
+const files = readdirSync(DIR).filter(f => f.endsWith('.json') && !f.startsWith('_'));
 const itemFiles = files.filter(f => !f.endsWith('.answers.json') && !f.endsWith('.meta.json'));
 const allIds = new Map();
 let itemTotal = 0, answerTotal = 0;
