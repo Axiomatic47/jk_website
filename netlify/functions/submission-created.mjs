@@ -12,6 +12,7 @@
 // this function alone.
 import { openStore } from '../lib/readings-store.mjs';
 import { FORM_NAME, toPending } from '../lib/readings-format.mjs';
+import { writeAudit } from '../lib/audit.mjs';
 
 export const handler = async (event) => {
   let body;
@@ -23,6 +24,7 @@ export const handler = async (event) => {
     const rec = toPending(s);
     if (await store.get(`pending/${rec.id}`) || await store.get(`decided/${rec.id}`)) return { statusCode: 200, body: 'seen' };
     await store.set(`pending/${rec.id}`, rec);
+    await writeAudit(store, { actor: 'netlify-forms', action: 'received', id: rec.id, item_id: rec.item_id, collection: rec.collection, from: 'netlify-forms', to: 'pending', content: rec });
     console.log(`submission-created: queued ${rec.id} → ${rec.collection}/${rec.item_id} (store=${store.kind})`);
     return { statusCode: 200, body: 'queued' };
   } catch (e) {

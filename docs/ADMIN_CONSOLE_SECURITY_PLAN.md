@@ -193,7 +193,22 @@ Steps in 2.x that touch `loe_website` are the LOE website-developer lane's to
 land; the same commit should be prepared once in the shared package (2.6) so
 neither site drifts again.
 
-## 5. What does not need to change
+## 5. Status
+
+| Item | kirchner.cv | lawsofexistence.com |
+| --- | --- | --- |
+| 2.1 no token fallback in functions; import kept as diagnostic | done 2026-09-09 (`readings-store.mjs`) | to port (710e489e) |
+| 2.2 passphrase login | gated: signs in only while Auth0 is unconfigured; 404 + "delete MODERATION_KEY" once configured | to port |
+| 2.3 MFA + attack protection | owner, Auth0 tenant | same tenant |
+| 2.4 audit trail | done: `netlify/lib/audit.mjs`, every decision + arrival + import; console home shows the newest 20 | to port |
+| 2.5 console headers + Strict session cookie | done (`admin-ui.mjs`, `admin-auth.mjs`; callback continues by same-site meta refresh) | to port |
+| 2.6 shared console package | not started — needs the owner to create the package repository | — |
+| 2.7 Dependabot | done (`.github/dependabot.yml`); owner enables alerts on the organisation | to port |
+| 2.8 store export | done: `content/readings/_store-export.json` at build (no contact, no ip/ua); version it with `npm run readings:pull -- --write` + commit | to port |
+| 2.9 abuse controls | not needed yet | — |
+| tests | `npm run test:console` — 25 checks | — |
+
+## 6. What does not need to change
 
 - Netlify plan: none of the above requires Pro. Pro adds per-variable secret
   scoping and longer function-log retention, useful but not prerequisite.

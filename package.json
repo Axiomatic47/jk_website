@@ -2,7 +2,7 @@
   "name": "jk-website",
   "version": "0.1.0",
   "private": true,
-  "description": "kirchner.cv \u2014 Joseph Kirchner's CV and professional site (static Next.js export on Netlify)",
+  "description": "kirchner.cv — Joseph Kirchner's CV and professional site (static Next.js export on Netlify)",
   "scripts": {
     "dev": "next dev",
     "validate-cv": "node scripts/validate-cv.mjs",
@@ -12,7 +12,8 @@
     "start": "npx serve out",
     "build:cv-pdf": "node scripts/build-cv-pdf.mjs",
     "readings:pull": "node scripts/pull-reading-answers.mjs",
-    "validate-readings": "node scripts/validate-readings.mjs"
+    "validate-readings": "node scripts/validate-readings.mjs",
+    "test:console": "node scripts/test-console.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^11.0.3",
