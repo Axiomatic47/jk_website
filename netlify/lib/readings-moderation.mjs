@@ -6,6 +6,7 @@
 import { openStore } from './readings-store.mjs';
 import { FORM_NAME, toPending, toPublished, problems, today, escapeHtml as h } from './readings-format.mjs';
 import { page, redirect, flashFrom } from './admin-ui.mjs';
+import { writeAudit, recentAudit } from './audit.mjs';
 
 function renderPending(p, csrf) {
   const probs = problems(p);
@@ -30,7 +31,7 @@ function renderApproved(a, csrf) {
 <form method="post" class="actions"><input type="hidden" name="csrf" value="${h(csrf)}"><input type="hidden" name="id" value="${h(a.id)}"><button class="rej" name="decision" value="withdraw">Withdraw</button> <small>Withdrawing before the build keeps it off the site; after the build the page keeps the answer until the next build.</small></form></div>`;
 }
 
-export async function importFromForms(store) {
+export async function importFromForms(store, actor = 'console', req = null) {
   const token = process.env.NETLIFY_AUTH_TOKEN, siteId = process.env.SITE_ID;
   if (!token || !siteId) return 'Import is not configured (NETLIFY_AUTH_TOKEN + SITE_ID).';
   const api = async p => { const r = await fetch(`https://api.netlify.com/api/v1${p}`, { headers: { Authorization: `Bearer ${token}` } }); if (!r.ok) throw new Error(`${p} → ${r.status}`); return r.json(); };
@@ -42,7 +43,9 @@ export async function importFromForms(store) {
   for (const s of subs) {
     const id = String(s.id);
     if (await store.get(`pending/${id}`) || await store.get(`decided/${id}`)) continue;
-    await store.set(`pending/${id}`, toPending(s));
+    const rec = toPending(s);
+    await store.set(`pending/${id}`, rec);
+    await writeAudit(store, { actor, action: 'imported', id, item_id: rec.item_id, collection: rec.collection, from: 'netlify-forms', to: 'pending', req, content: rec });
     n += 1;
   }
   return `Imported ${n} submission(s) from Netlify Forms.`;
@@ -56,6 +59,11 @@ export async function readingsCounts() {
   } catch (e) { return { kind: `ERROR: ${e.message}`, pending: '?', approved: '?' }; }
 }
 
+/** newest audit records for the console home (empty on a store error) */
+export async function recentActivity(n = 20) {
+  try { return await recentAudit(await openStore(), n); } catch { return []; }
+}
+
 /** GET/POST /admin/readings — `ctx` = { sess, csrf, csrfOk(given) } */
 export async function handleReadings(req, url, ctx) {
   const store = await openStore();
@@ -64,13 +72,17 @@ export async function handleReadings(req, url, ctx) {
     if (!ctx.csrfOk(form.get('csrf'))) return page({ title: 'Refused', body: '<h1>Refused</h1><p class="sub">This form was not issued by your session. Go back and try again.</p>', status: 403, sess: ctx.sess });
     let flash = '', bad = false;
     const action = form.get('action');
-    if (action === 'import') { try { flash = await importFromForms(store); } catch (e) { flash = `Import failed: ${e.message}`; bad = true; } }
+    const actor = ctx.sess.email;
+    if (action === 'import') { try { flash = await importFromForms(store, actor, req); } catch (e) { flash = `Import failed: ${e.message}`; bad = true; } }
     else {
       const id = String(form.get('id') ?? '').replace(/[^A-Za-z0-9_-]/g, '');
       const decision = String(form.get('decision') ?? '');
       if (decision === 'withdraw') {
         const a = await store.get(`approved/${id}`);
-        if (a) { await store.del(`approved/${id}`); await store.set(`decided/${id}`, { decision: 'withdrawn', date: today(), item_id: a.item_id }); flash = `Withdrawn: ${a.item_id}.`; }
+        if (a) {
+          await writeAudit(store, { actor, action: 'withdrawn', id, item_id: a.item_id, collection: a.collection, from: 'approved', to: 'decided', req, content: a });
+          await store.del(`approved/${id}`); await store.set(`decided/${id}`, { decision: 'withdrawn', date: today(), at: new Date().toISOString(), actor, item_id: a.item_id }); flash = `Withdrawn: ${a.item_id}.`;
+        }
       } else {
         const p = await store.get(`pending/${id}`);
         if (!p) { flash = 'That submission is no longer pending.'; bad = true; }
@@ -78,14 +90,16 @@ export async function handleReadings(req, url, ctx) {
           const probs = problems(p);
           if (probs.length) { flash = `Not published: ${probs.join('; ')}.`; bad = true; }
           else {
+            await writeAudit(store, { actor, action: 'published', id, item_id: p.item_id, collection: p.collection, from: 'pending', to: 'approved', req, content: p });
             await store.set(`approved/${id}`, { ...toPublished(p), collection: p.collection });
-            await store.set(`decided/${id}`, { decision: 'published', date: today(), item_id: p.item_id });
+            await store.set(`decided/${id}`, { decision: 'published', date: today(), at: new Date().toISOString(), actor, item_id: p.item_id });
             await store.del(`pending/${id}`);
             flash = `Approved: ${p.item_id}, reading ${p.letter}. It publishes at the next build of main.`;
           }
         } else if (decision === 'author_only' || decision === 'reject') {
+          await writeAudit(store, { actor, action: decision === 'reject' ? 'rejected' : 'author_only', id, item_id: p.item_id, collection: p.collection, from: 'pending', to: decision === 'reject' ? 'decided' : 'author-only', req, content: p });
           if (decision === 'author_only') await store.set(`author-only/${id}`, p);
-          await store.set(`decided/${id}`, { decision: decision === 'reject' ? 'rejected' : 'author_only', date: today(), item_id: p.item_id });
+          await store.set(`decided/${id}`, { decision: decision === 'reject' ? 'rejected' : 'author_only', date: today(), at: new Date().toISOString(), actor, item_id: p.item_id });
           await store.del(`pending/${id}`);
           flash = decision === 'reject' ? `Rejected: ${p.item_id}.` : `Kept for the author only: ${p.item_id}.`;
         }
@@ -97,7 +111,7 @@ export async function handleReadings(req, url, ctx) {
   // Belt and braces: when the owner's token is present, pull anything the event
   // function missed straight from Netlify Forms on every load (idempotent).
   let synced = '';
-  if (process.env.NETLIFY_AUTH_TOKEN && process.env.SITE_ID) { try { synced = await importFromForms(store); } catch (e) { synced = `Forms sync failed: ${e.message}`; } }
+  if (process.env.NETLIFY_AUTH_TOKEN && process.env.SITE_ID) { try { synced = await importFromForms(store, ctx.sess.email, req); } catch (e) { synced = `Forms sync failed: ${e.message}`; } }
   const pending = (await Promise.all((await store.list('pending/')).map(k => store.get(k)))).filter(Boolean).sort((a, b) => a.created.localeCompare(b.created));
   const approved = (await Promise.all((await store.list('approved/')).map(k => store.get(k)))).filter(Boolean).sort((a, b) => a.published.localeCompare(b.published));
   const authorOnly = await store.list('author-only/');

@@ -16,7 +16,8 @@ function readJson<T>(p: string): T | null {
 
 export function listReadingCollections(): string[] {
   if (!fs.existsSync(ROOT)) return [];
-  return fs.readdirSync(ROOT).filter((f) => f.endsWith('.json') && !f.endsWith('.answers.json') && !f.endsWith('.meta.json')).map((f) => f.replace(/\.json$/, '')).sort();
+  // underscore-prefixed files are build products (_store-export.json), never collections
+  return fs.readdirSync(ROOT).filter((f) => f.endsWith('.json') && !f.startsWith('_') && !f.endsWith('.answers.json') && !f.endsWith('.meta.json')).map((f) => f.replace(/\.json$/, '')).sort();
 }
 
 interface RawFile { _generated?: unknown; items: (OpenReading & { collation_ref?: string })[] }
