@@ -41,7 +41,7 @@ await check('event: in a function with no Blobs → 500 naming Blobs, never a lo
 const lambdaEvent = { body: JSON.stringify({ payload: { ...payload, id: 'sub-3' } }), blobs: Buffer.from(JSON.stringify({ url: 'https://blobs.example.invalid', token: 't' })).toString('base64'), headers: { 'x-nf-site-id': 'site-1', 'x-nf-deploy-id': 'dep-1' } };
 const rLambda = await quiet(() => onSubmission(lambdaEvent));
 delete process.env.AWS_LAMBDA_FUNCTION_NAME;
-await check('event: legacy event.blobs is loaded via connectLambda (store opens as blobs; only the network is absent here)', () => { assert.equal(rLambda.statusCode, 500); assert.doesNotMatch(rLambda.body, /has not been configured/); assert.ok(process.env.NETLIFY_BLOBS_CONTEXT, 'connectLambda set NETLIFY_BLOBS_CONTEXT'); });
+await check('event: legacy event.blobs is loaded via connectLambda (store opens as blobs; only the network is absent here)', () => { assert.equal(rLambda.statusCode, 500); assert.doesNotMatch(rLambda.body, /has not been configured/); assert.doesNotMatch(rLambda.body, /strong consistency/); assert.ok(process.env.NETLIFY_BLOBS_CONTEXT, 'connectLambda set NETLIFY_BLOBS_CONTEXT'); });
 delete process.env.NETLIFY_BLOBS_CONTEXT;
 
 // ---- 2. store + audit after arrival
