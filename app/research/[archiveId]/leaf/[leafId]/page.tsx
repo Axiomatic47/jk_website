@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import {ARCHIVE_IDS, RESEARCH_ARCHIVES } from '@/lib/research-archive';
 import { readArchiveManifest } from '@/lib/research-archive.server';
 import { LeafBody } from './LeafBody';
+import { loadAllReadings } from '@/lib/open-readings.server';
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -31,8 +32,9 @@ export default async function ResearchLeafPage({ params }: Params) {
   if (!c || !manifest || !leaf) notFound();
   const ids = manifest.leaves.map((l) => l.id);
   const idx = ids.indexOf(leafId);
+  const openReadings = loadAllReadings().flatMap((col) => col.items.filter((it) => it.source.kind === 'archive' && it.source.archiveId === archiveId && it.source.leafId === leafId).map((it) => ({ collection: col.id, id: it.id })));
   return (
-    <LeafBody archiveId={archiveId} refLabel={c.ref} leafLabel={c.leafLabel} manifest={manifest} leaf={leaf}
+    <LeafBody archiveId={archiveId} refLabel={c.ref} leafLabel={c.leafLabel} manifest={manifest} leaf={leaf} openReadings={openReadings}
       prev={idx > 0 ? ids[idx - 1] : null} next={idx >= 0 && idx < ids.length - 1 ? ids[idx + 1] : null} />
   );
 }

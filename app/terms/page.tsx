@@ -25,6 +25,7 @@ export default function Terms() {
           <li>Link to any page.</li>
           <li>Quote the author&rsquo;s writings with attribution for scholarship, journalism, criticism, or teaching.</li>
           <li>Share the CV with people evaluating the author for a role or engagement.</li>
+          <li>Answer an open reading on the research pages. By sending an answer you allow the author to publish it in the form you chose, or to keep it private if you asked.</li>
         </UL>
         <H2>What you may not do</H2>
         <UL>

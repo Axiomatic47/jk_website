@@ -27,9 +27,11 @@ interface Props {
   leaf: ArchiveLeafEntry;
   prev: string | null;
   next: string | null;
+  /** open readings whose source is this leaf */
+  openReadings?: { collection: string; id: string }[];
 }
 
-export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev, next }: Props) {
+export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev, next, openReadings = [] }: Props) {
   const tabs = useMemo(() => {
     const t: Array<{ key: string; label: string; doc: ArchiveDoc }> = [];
     const seen = new Set<string>();
@@ -106,6 +108,11 @@ export function LeafBody({ archiveId, refLabel, leafLabel, manifest, leaf, prev,
             {prev && <Link href={`/research/${archiveId}/leaf/${prev}`} className="text-sm text-accent-ink inline-flex items-center no-underline"><ArrowLeft className="h-3.5 w-3.5 mr-1" /> {prev}</Link>}
             <span className="font-serif px-2 tabular-nums" style={{ fontWeight: 620 }}>{leafLabel} {leaf.id}</span>
             {next && <Link href={`/research/${archiveId}/leaf/${next}`} className="text-sm text-accent-ink inline-flex items-center no-underline">{next} <ArrowRight className="h-3.5 w-3.5 ml-1" /></Link>}
+            {openReadings.length > 0 && (
+              <Link href={openReadings.length === 1 ? `/research/${openReadings[0].collection}/readings/${openReadings[0].id}` : `/research/${openReadings[0].collection}/readings`} className="ml-2 text-xs uppercase tracking-[0.06em] text-accent-ink border border-accent/40 bg-accent/15 rounded-md px-2 py-0.5 no-underline" style={{ fontWeight: 600 }}>
+                {openReadings.length} open reading{openReadings.length === 1 ? '' : 's'} on this leaf
+              </Link>
+            )}
             <span className="hidden lg:inline-flex items-center gap-0.5 ml-3 bg-card border border-rule rounded-md shadow-card p-0.5">
               <button type="button" className={tog(layout === 'stacked')} onClick={() => changeLayout('stacked')} aria-pressed={layout === 'stacked'} title="Stacked — image above, document below" aria-label="Stacked layout"><Rows className="h-4 w-4" /></button>
               <button type="button" className={tog(layout === 'side')} onClick={() => changeLayout('side')} aria-pressed={layout === 'side'} title="Side by side — image beside document" aria-label="Side-by-side layout"><Columns className="h-4 w-4" /></button>
