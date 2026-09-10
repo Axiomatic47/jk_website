@@ -49,7 +49,9 @@ const inBuild = () => process.env.NETLIFY === 'true' && !inFunction();
 
 async function blobStore() {
   const { getStore } = await import('@netlify/blobs');
-  return getStore(STORE_NAME); // the runtime's own credentials; throws a descriptive error when they are absent
+  // Strong consistency: a moderation queue must show a record the moment the
+  // event function wrote it; the default (eventual) may lag reads by up to a minute.
+  return getStore({ name: STORE_NAME, consistency: 'strong' }); // the runtime's own credentials; throws a descriptive error when they are absent
 }
 
 const wrapBlobs = s => ({
