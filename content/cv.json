@@ -1,7 +1,7 @@
 {
   "$comment": "Single source of truth for kirchner.cv. Every section renders only when it has entries; scripts/validate-cv.mjs refuses placeholder text and lists empty sections at build time. Fill this file, do not edit the pages.",
   "name": "Joseph Kirchner",
-  "headline": "Property Management Professional · Independent Researcher · Operations Consultant",
+  "headline": "Property Management and Consulting Services · Independent Researcher",
   "location": "Minneapolis–Saint Paul, Minnesota",
   "email": "joseph@kirchner.cv",
   "pdf": "/cv/Joseph_Kirchner_CV.pdf",
@@ -26,7 +26,12 @@
       "start": "Jun 2024",
       "end": "Jul 2025",
       "summary": "Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale in 2025.",
-      "highlights": []
+      "highlights": [
+        "Hiring and training of on-site staff",
+        "Development and monitoring of annual budgets",
+        "Supervision of delinquent-rent collection",
+        "Resident annual recertifications and site maintenance, managed in Yardi"
+      ]
     },
     {
       "role": "Regional Property Manager",

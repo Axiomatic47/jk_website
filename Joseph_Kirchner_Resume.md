@@ -10,7 +10,7 @@ website: kirchner.cv
 
 # Joseph Kirchner
 
-Property Management Professional · Independent Researcher · Operations Consultant
+Property Management and Consulting Services · Independent Researcher
 
 ## Summary
 
@@ -39,6 +39,14 @@ Social contract theory and the separation of powers, with particular attention t
 Premier Management and Development (formerly Premier Housing Management) · St. Paul, MN · Jun 2024 – Jul 2025
 
 Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale in 2025.
+
+- Hiring and training of on-site staff
+
+- Development and monitoring of annual budgets
+
+- Supervision of delinquent-rent collection
+
+- Resident annual recertifications and site maintenance, managed in Yardi
 
 ### Regional Property Manager
 
