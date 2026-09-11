@@ -169,6 +169,11 @@ def date_range(e: dict) -> str:
     return f"{start} – {end}"
 
 
+def _cap_present(year: str) -> str:
+    """cv.json writes '2016 – present' (the site's lower case); the page says Present."""
+    return (year or "").replace(" – present", " – Present")
+
+
 def _short_url(url: str) -> str:
     return url.replace("https://", "").replace("http://", "").rstrip("/")
 
@@ -355,7 +360,7 @@ def _education(doc, cv: dict) -> None:
     for e in cv["education"]:
         title = e.get("degree") or e["institution"]
         sub_parts = [e["institution"] if e.get("degree") else None, e.get("location")]
-        _entry_head(doc, title, e.get("year", ""), " · ".join(x for x in sub_parts if x))
+        _entry_head(doc, title, _cap_present(e.get("year", "")), " · ".join(x for x in sub_parts if x))
         if e.get("detail"):
             doc.add_paragraph(e["detail"], style="CV Entry Summary")
 
