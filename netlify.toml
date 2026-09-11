@@ -62,3 +62,8 @@
   to = "https://kirchner.cv/:splat"
   status = 301
   force = true
+
+[[headers]]
+  for = "/portrait.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
