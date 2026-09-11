@@ -10,11 +10,11 @@ website: kirchner.cv
 
 # Joseph Kirchner
 
-Regional Property Manager · Operations Consultant
+Property Management Professional · Independent Researcher · Operations Consultant
 
 ## Summary
 
-Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management since 2019; since 2023, regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states. Also the owner of a small-business consultancy and the author of independently published research. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.
+Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management from 2019; regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states (2023–2024); management of 200+ PRAC 202/811 units across Minnesota (2024–2025). Since 2025, full-time independent research in social contract theory and the separation of powers, and the author of an independently published compliance test for separation-of-powers questions. Also the owner of a small-business consultancy. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.
 
 ## Skills
 
@@ -26,9 +26,23 @@ Property-management professional and independent researcher. Twin Cities leasing
 
 ## Experience
 
+### Independent Researcher
+
+Full-time independent study · Edina, MN · Aug 2025 – Present
+
+Social contract theory and the separation of powers, with particular attention to the works of Thomas Hobbes and Immanuel Kant.
+
+- Author of “The Madisonian Separation of Powers Objective Compliance Test” (2026): a six-step objective compliance test for separation-of-powers questions, validated against 36 Supreme Court decisions spanning 154 years
+
+### Property Manager
+
+Premier Management and Development (formerly Premier Housing Management) · St. Paul, MN · Jun 2024 – Jul 2025
+
+Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale in 2025.
+
 ### Regional Property Manager
 
-Accessible Space, Inc. · St. Paul, MN · Feb 2023 – Present
+Accessible Space, Inc. · St. Paul, MN · Feb 2023 – May 2024
 
 Regional management of 24 HUD PRAC 202/811 properties, 525 units across five states.
 
@@ -94,7 +108,7 @@ Lion Rock Properties · St. Louis Park, MN · Mar 2019 – Oct 2019
 
 2016 – Present
 
-Social contract theory, with particular attention to the works of Thomas Hobbes and Immanuel Kant.
+Social contract theory, with particular attention to the works of Thomas Hobbes and Immanuel Kant; full time since 2025.
 
 ### Associate of Arts with Emphasis in Philosophy
 

@@ -1,19 +1,39 @@
 {
   "$comment": "Single source of truth for kirchner.cv. Every section renders only when it has entries; scripts/validate-cv.mjs refuses placeholder text and lists empty sections at build time. Fill this file, do not edit the pages.",
   "name": "Joseph Kirchner",
-  "headline": "Regional Property Manager · Operations Consultant",
+  "headline": "Property Management Professional · Independent Researcher · Operations Consultant",
   "location": "Minneapolis–Saint Paul, Minnesota",
   "email": "joseph@kirchner.cv",
   "pdf": "/cv/Joseph_Kirchner_CV.pdf",
   "links": [],
-  "summary": "Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management since 2019; since 2023, regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states. Also the owner of a small-business consultancy and the author of independently published research. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.",
+  "summary": "Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management from 2019; regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states (2023–2024); management of 200+ PRAC 202/811 units across Minnesota (2024–2025). Since 2025, full-time independent research in social contract theory and the separation of powers, and the author of an independently published compliance test for separation-of-powers questions. Also the owner of a small-business consultancy. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.",
   "experience": [
+    {
+      "role": "Independent Researcher",
+      "organization": "Full-time independent study",
+      "location": "Edina, MN",
+      "start": "Aug 2025",
+      "end": "",
+      "summary": "Social contract theory and the separation of powers, with particular attention to the works of Thomas Hobbes and Immanuel Kant.",
+      "highlights": [
+        "Author of “The Madisonian Separation of Powers Objective Compliance Test” (2026): a six-step objective compliance test for separation-of-powers questions, validated against 36 Supreme Court decisions spanning 154 years"
+      ]
+    },
+    {
+      "role": "Property Manager",
+      "organization": "Premier Management and Development (formerly Premier Housing Management)",
+      "location": "St. Paul, MN",
+      "start": "Jun 2024",
+      "end": "Jul 2025",
+      "summary": "Management of 200+ HUD PRAC 202/811 units across Minnesota until the portfolio's sale in 2025.",
+      "highlights": []
+    },
     {
       "role": "Regional Property Manager",
       "organization": "Accessible Space, Inc.",
       "location": "St. Paul, MN",
       "start": "Feb 2023",
-      "end": "",
+      "end": "May 2024",
       "summary": "Regional management of 24 HUD PRAC 202/811 properties, 525 units across five states.",
       "highlights": [
         "Hiring and training of on-site staff",
@@ -87,7 +107,7 @@
       "degree": "",
       "institution": "Independent study",
       "year": "2016 – present",
-      "detail": "Social contract theory, with particular attention to the works of Thomas Hobbes and Immanuel Kant."
+      "detail": "Social contract theory, with particular attention to the works of Thomas Hobbes and Immanuel Kant; full time since 2025."
     },
     {
       "degree": "Associate of Arts with Emphasis in Philosophy",
