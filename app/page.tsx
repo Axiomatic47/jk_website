@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { Download, Mail, MapPin, Link as LinkIcon } from 'lucide-react';
+import { Mail, MapPin, Link as LinkIcon } from 'lucide-react';
 import { cv } from '@/lib/cv';
 import { SiteShell } from './_components/SiteShell';
 import { Portrait } from './_components/Portrait';
 import { PdfViewer } from './_components/PdfViewer';
+import { DownloadCvMenu } from './_components/DownloadCvMenu';
 
 export const metadata: Metadata = { alternates: { canonical: '/' } };
 
@@ -39,11 +40,7 @@ export default function About() {
                 </div>
               ))}
             </dl>
-            {cv.pdf && (
-              <a href={cv.pdf} download className="mt-6 inline-flex items-center gap-2 h-10 px-4 rounded-md bg-accent text-ink text-sm no-underline hover:bg-[#c29d63] transition-colors" style={{ fontWeight: 600 }}>
-                <Download className="h-4 w-4" /> Download CV
-              </a>
-            )}
+            {cv.pdf && <DownloadCvMenu styled={cv.pdf} print={cv.pdf_print || undefined} className="mt-6" />}
           </div>
         </aside>
 

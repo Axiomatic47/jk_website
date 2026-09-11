@@ -3,6 +3,9 @@ title: "Joseph Kirchner Resume"
 output: "Joseph_Kirchner_Resume.docx"
 doc_id: kirchner_resume
 formatter: resume
+print_output: "Joseph_Kirchner_Resume_Print.docx"
+web_output: "Joseph_Kirchner_Resume_Web.docx"
+web_print_output: "Joseph_Kirchner_Resume_Web_Print.docx"
 location: "Edina, MN"
 email: joseph@kirchner.cv
 ---
