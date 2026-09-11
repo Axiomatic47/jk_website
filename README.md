@@ -9,8 +9,11 @@ Netlify from `main`.
   in cv.json to render the download link. The page also prints cleanly
   (File → Print → Save as PDF).
 - Develop: `npm install`, `npm run dev`. Gates: `npm run build`, `npm run lint`.
-- Resume (Word): `npm run build:resume` renders cv.json plus a private contact
-  file outside the repo (`~/.config/kirchner-cv/private.json`) to
-  `Joseph_Kirchner_Resume.docx` and `Joseph_Kirchner_References.docx` in the
-  repo root (gitignored). Needs python3 with python-docx. Word is the renderer.
+- Resume: `Joseph_Kirchner_Resume.md` (repo root) is the SOURCE — a Studio
+  filing doc rendered by the Studio's `resume` converter (Word is the
+  renderer; `*.docx` is gitignored). `npm run cv:sync` derives cv.json from
+  it (`cv:check` fails if cv.json is stale). Private contact data lives
+  outside the repo (`~/.config/kirchner-cv/private.json`); the build gate
+  refuses it in cv.json. `Joseph_Kirchner_References.md` is the references
+  sheet's header; the references themselves are private and hand-sent.
 - Realm rules: `CLAUDE.md`.
