@@ -10,4 +10,4 @@ website: kirchner.cv
 ---
 # Joseph Kirchner
 
-Regional Property Manager · Operations Consultant
+Property Management and Consulting Services · Independent Researcher
