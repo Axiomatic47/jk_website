@@ -126,6 +126,14 @@ Normandale Community College · Bloomington, MN · 2014 – 2016
 
 Duluth, MN · 2009 – 2011
 
+## Professional Memberships
+
+### Selden Society
+
+Member · since 2026
+
+The learned society for the history of English law, founded 1887.
+
 ## Selected Work
 
 ### The Madisonian Separation of Powers Objective Compliance Test
