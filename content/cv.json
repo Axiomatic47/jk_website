@@ -2,7 +2,7 @@
   "$comment": "Single source of truth for kirchner.cv. Every section renders only when it has entries; scripts/validate-cv.mjs refuses placeholder text and lists empty sections at build time. Fill this file, do not edit the pages.",
   "name": "Joseph Kirchner",
   "headline": "Property Management and Consulting Services · Independent Researcher",
-  "location": "Minneapolis–Saint Paul, Minnesota",
+  "location": "Edina, Minnesota",
   "email": "joseph@kirchner.cv",
   "pdf": "/cv/Joseph_Kirchner_CV.pdf",
   "links": [],
