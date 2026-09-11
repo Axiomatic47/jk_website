@@ -1,7 +1,9 @@
 'use client';
 // Download CV — a small selector (owner 2026-09-11): the styled version, with
-// the navy header band, or a print-friendly version with no shading. Both are
-// generated at build from the same cv.json (scripts/build-cv-pdf.mjs).
+// the navy header band, or a print-friendly version with no shading. Both come
+// from the one resume: the owner's Word exports under public/resume/ (current),
+// or, when cv.json points at /cv/, files generated at build by build-cv-pdf.mjs.
+// Either way scripts/check-pdf-private.mjs screens them before the build passes.
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Download, Printer } from 'lucide-react';
 
