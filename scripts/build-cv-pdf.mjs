@@ -172,7 +172,10 @@ function render(variant, outPath) {
   return new Promise((resolve) => stream.on('finish', () => resolve(page)));
 }
 
-const jobs = [['styled', cv.pdf], ['print', cv.pdf_print]].filter(([, p]) => p);
+// Only GENERATED targets (/cv/…) are rendered here; a key under /resume/ names an
+// owner-exported Word PDF that is tracked in public/resume/ and screened by check:pdf.
+const jobs = [['styled', cv.pdf], ['print', cv.pdf_print]].filter(([, p]) => p && p.startsWith('/cv/'));
+if (!jobs.length) console.log('build-cv-pdf: no generated targets (both PDFs are owner-rendered under /resume/)');
 for (const [variant, rel] of jobs) {
   const outPath = new URL(rel.replace(/^\/cv\//, ''), outDir);
   const pages = await render(variant, outPath);
