@@ -17,6 +17,7 @@ export default function Contact() {
         <h1 className="font-serif text-4xl sm:text-5xl tracking-tight mb-6" style={{ fontWeight: 620 }}>Get in touch</h1>
         <p className="font-serif text-lg leading-relaxed text-ink/90 mb-8">
           For opportunities, collaboration, or questions about the work, email is the best way to reach me.
+          A full CV with references is available on request.
         </p>
         <ul className="space-y-4 text-base">
           <li className="flex items-center gap-3">
