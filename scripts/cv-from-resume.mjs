@@ -15,6 +15,9 @@
 //   org · location · dates (the segment that reads as a date range; URLs are
 //   links) / paragraphs / - bullets; under ## Skills: - **Label:** a · b · c
 //
+// Sections the site does not carry (Professional Memberships, ...) are parsed
+// and IGNORED — the derived keys are fixed; a resume-only section never
+// changes cv.json (owner 2026-09-11: memberships on the resume, not the site).
 // Private data (phone, references) is never in the markdown; the build gate
 // (validate-cv.mjs) refuses it in cv.json regardless.
 //
@@ -27,7 +30,7 @@ const check = process.argv.includes('--check');
 
 const MONTH = '(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\\.?';
 const DATE = `(?:${MONTH}\\s+)?\\d{4}`;
-const RANGE_RE = new RegExp(`^${DATE}(?:\\s*[–—-]\\s*(?:${DATE}|[Pp]resent))?$`);
+const RANGE_RE = new RegExp(`^(?:${DATE}(?:\\s*[–—-]\\s*(?:${DATE}|[Pp]resent))?|[Ss]ince\\s+${DATE})$`);
 const URL_RE = /^(?:https?:\/\/|www\.)\S+$|^[a-z0-9.-]+\.[a-z]{2,}(?:\/\S*)?$/i;
 const SKILL_RE = /^\*\*([^*]+?)(:)?\*\*:?\s*(.*)$/;
 const BULLET_RE = /^[ \t]*[-*+][ \t]+(.*)$/;

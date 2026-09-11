@@ -6,8 +6,7 @@ formatter: resume
 sheet: references
 location: "Edina, MN"
 email: joseph@kirchner.cv
-website: kirchner.cv
 ---
 # Joseph Kirchner
 
-Regional Property Manager · Operations Consultant
+Property Management and Consulting Services · Independent Researcher

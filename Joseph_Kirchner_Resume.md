@@ -5,7 +5,6 @@ doc_id: kirchner_resume
 formatter: resume
 location: "Edina, MN"
 email: joseph@kirchner.cv
-website: kirchner.cv
 ---
 
 # Joseph Kirchner
@@ -125,6 +124,14 @@ Normandale Community College · Bloomington, MN · 2014 – 2016
 ### University of Minnesota Duluth
 
 Duluth, MN · 2009 – 2011
+
+## Professional Memberships
+
+### Selden Society
+
+Member · since 2026
+
+The learned society for the history of English law, founded 1887.
 
 ## Selected Work
 
