@@ -11,6 +11,7 @@
     "build": "npm run readings:pull && npm run validate-cv && npm run validate-readings && npm run build:cv-pdf && npm run typecheck && next build",
     "start": "npx serve out",
     "build:cv-pdf": "node scripts/build-cv-pdf.mjs",
+    "build:resume": "python3 scripts/build-resume-docx.py",
     "readings:pull": "node scripts/pull-reading-answers.mjs",
     "validate-readings": "node scripts/validate-readings.mjs",
     "test:console": "node scripts/test-console.mjs"
