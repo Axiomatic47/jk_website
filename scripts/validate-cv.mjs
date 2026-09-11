@@ -57,7 +57,7 @@ for (const [i, w] of (cv.works ?? []).entries()) {
 // for private contact at build by scripts/check-pdf-private.mjs.
 for (const k of ['pdf', 'pdf_print']) if (cv[k] && !/^\/(cv|resume)\/[\w.-]+\.pdf$/.test(cv[k])) errors.push(`cv.${k} must be /cv/<name>.pdf (generated) or /resume/<name>.pdf (owner-rendered, tracked)`);
 if (cv.pdf_print && cv.pdf_print === cv.pdf) errors.push('cv.pdf_print must differ from cv.pdf');
-if (cv.pdf && cv.pdf.startsWith('/resume/') && !existsSync(new URL(`../public${cv.pdf}`, import.meta.url))) errors.push(`cv.pdf ${cv.pdf} is not under public/ (owner-rendered PDFs are tracked files)`);
+for (const k of ['pdf', 'pdf_print']) if (cv[k] && cv[k].startsWith('/resume/') && !existsSync(new URL(`../public${cv[k]}`, import.meta.url))) errors.push(`cv.${k} ${cv[k]} is not under public/ (owner-rendered PDFs are tracked files)`);
 if (cv.portrait && !existsSync(new URL(`../public${cv.portrait}`, import.meta.url))) errors.push(`cv.portrait ${cv.portrait} is not under public/`);
 const slugs = new Set();
 for (const [i, w] of works.entries()) {

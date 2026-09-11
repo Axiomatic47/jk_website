@@ -31,8 +31,8 @@ export interface CV {
   headline: string;
   location: string;
   email: string;
-  pdf: string;           // styled CV PDF, generated at build
-  pdf_print: string;     // print-friendly CV PDF (no shading), generated at build; or ""
+  pdf: string;           // styled CV PDF: /resume/… owner-exported from Word (tracked) or /cv/… generated at build
+  pdf_print: string;     // print-friendly CV PDF (no shading), same two forms; or ""
   portrait: string;      // site-relative image under public/, or ""
   availability: string;  // short badge text, or ""
   links: Link[];
