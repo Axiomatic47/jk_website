@@ -18,6 +18,13 @@ different Netlify project. kirchner.ink redirects here for now.
   text at build time and lists empty sections in the build log.
 - The site is public. Nothing from the litigation record, evidence trees, or
   research_library working files goes here unless the owner says so.
+- **References are never published** (owner 2026-09-10). No reference names,
+  phone numbers, street address, or any contact beyond `cv.email` in cv.json,
+  works.json, or any page. The site invites people to request the full CV
+  with references by e-mail; the resume and references sheet are Word files
+  the owner sends by hand (`npm run build:resume`, private data from
+  `~/.config/kirchner-cv/private.json`, never inside a repo). The validator
+  refuses these keys and phone-shaped strings at build time.
 
 ## Stack
 Next.js (App Router, `output: 'export'` → `out/`), TypeScript, Tailwind,

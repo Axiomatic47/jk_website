@@ -12,10 +12,22 @@ const errors = [];
 const warnings = [];
 
 const PLACEHOLDER = /\b(TODO|TBD|lorem|ipsum|placeholder|your (name|title|role|company))\b|\[[^\]]*\]/i;
+// Never published (owner 2026-09-10): references and any contact beyond cv.email.
+// People request the full CV with references by e-mail; the references sheet is a
+// Word file the owner sends by hand. These keys and phone-shaped strings are refused.
+const PRIVATE_KEY = /^(references?|referees?|phone|mobile|cell|tel|telephone|address|street|home_address)$/i;
+const PHONE = /(?:\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\b/;
 const walk = (v, path) => {
-  if (typeof v === 'string') { if (PLACEHOLDER.test(v)) errors.push(`${path}: placeholder text "${v.slice(0, 60)}"`); }
+  if (typeof v === 'string') {
+    if (PLACEHOLDER.test(v)) errors.push(`${path}: placeholder text "${v.slice(0, 60)}"`);
+    if (PHONE.test(v)) errors.push(`${path}: phone-shaped string — no contact beyond cv.email is published`);
+  }
   else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${path}[${i}]`));
-  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) if (k !== '$comment') walk(x, `${path}.${k}`);
+  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) {
+    if (k === '$comment') continue;
+    if (PRIVATE_KEY.test(k)) errors.push(`${path}.${k}: references and private contact are never published (owner 2026-09-10)`);
+    walk(x, `${path}.${k}`);
+  }
 };
 walk(cv, 'cv');
 walk(works, 'works');
