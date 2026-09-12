@@ -48,20 +48,6 @@
   status = 301
   force = true
 
-# kirchner.ink forwards to kirchner.cv for now (owner 2026-09-09). To make
-# kirchner.ink its own site later: remove these two rules and the domain
-# aliases on this Netlify project, then give it its own project.
-[[redirects]]
-  from = "https://kirchner.ink/*"
-  to = "https://kirchner.cv/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://www.kirchner.ink/*"
-  to = "https://kirchner.cv/:splat"
-  status = 301
-  force = true
 
 [[headers]]
   for = "/portrait.jpg"

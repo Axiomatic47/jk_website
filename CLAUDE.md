@@ -3,7 +3,8 @@
 Personal professional site for Joseph Kirchner: CV for networking and job
 searching, with room for selected academic work. SEPARATE from
 lawsofexistence.com (loe_website) — different audience, different repo,
-different Netlify project. kirchner.ink redirects here for now.
+different Netlify project. kirchner.ink is its own site (ink_site, cloned
+from this repo 2026-09-12; shared code — a fix here belongs there too).
 
 ## Branch law (mirrors midesk BRANCHING.md §11)
 - Agents work on and push `device/<host>` (this Mac: `device/macbook`).
@@ -34,5 +35,5 @@ Gates before "done": `npm run build` (validate-cv → tsc → next build) and
 
 ## DNS / hosting (2026-09-09)
 Domains at Namecheap; DNS and hosting on Netlify (team axiomatic47). Mail for
-joseph@kirchner.cv is Zoho (same as the other domains). Redirect rules for
-www and kirchner.ink live in netlify.toml.
+joseph@kirchner.cv is Zoho (same as the other domains). The www redirect
+lives in netlify.toml; kirchner.ink moved to its own Netlify project 2026-09-12.
