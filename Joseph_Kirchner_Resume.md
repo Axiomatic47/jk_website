@@ -20,9 +20,9 @@ Property-management professional and independent researcher. Twin Cities leasing
 
 ## Skills
 
-- **Property management:** HUD PRAC 202/811 · Section 8 and tax-credit compliance · Leasing and renewals · Budgeting · Recertifications
+- **Property management:** HUD PRAC 202/811 · Section 8 and tax-credit compliance · Leasing and renewals · Budgeting · Recertifications · HUD and city inspections
 
-- **Software:** AppFolio · Yardi · OneSite · Standard office software
+- **Software:** AppFolio · Yardi · OneSite · Custom software development · Standard office software
 
 - **Operations:** Team leadership · Hiring and training · Policy and procedure development · Licensing · Payroll
 
@@ -34,7 +34,7 @@ Independent study · Edina, MN · 2016 – Present
 
 Part time from 2016, alongside property management; full time since August 2025. Linguistics, ethics, and social contract theory, with a focus on the Hobbesian and Kantian philosophies (2016–2020); the law, with a special focus on qualified immunity as applied to police officials (from 2020); and, from 2026, the genealogy of the immunity doctrine from Floyd v. Barker (1607) to Trump v. United States (2024) and the recovery of its primary-source record.
 
-- Author of “The Madisonian Separation of Powers Objective Compliance Test” (2026): a six-step objective compliance test for separation-of-powers questions, validated against 36 Supreme Court decisions spanning 154 years
+- Author of *The Subject's Unanswered Plea: A Restorative and Comparative History of Immunity* (working draft, 2026), a history of the immunity doctrine built on the 1607 Star Chamber cause file in The National Archives, whose transcription was verified against the originals at Kew by Christopher Whittick, MA FSA, former County Archivist of East Sussex
 
 ### Property Manager
 
@@ -135,9 +135,3 @@ Duluth, MN · 2009 – 2011
 Member · since 2026
 
 The learned society for the history of English law, founded 1887.
-
-## Selected Work
-
-### The Madisonian Separation of Powers Objective Compliance Test
-
-Independent research · https://kirchner.cv/work/madisonian-test · 2026
