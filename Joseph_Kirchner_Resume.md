@@ -122,7 +122,7 @@ Part time from 2016, full time since 2025: linguistics, ethics, and social contr
 
 ### Associate of Arts with Emphasis in Philosophy
 
-Normandale Community College · Bloomington, MN · 2014 – 2016
+Normandale Community College · Bloomington, MN · 2015 – 2016
 
 ### University of Minnesota Duluth
 
