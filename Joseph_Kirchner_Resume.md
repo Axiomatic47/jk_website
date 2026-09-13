@@ -16,13 +16,13 @@ Property Management and Consulting Services · Independent Researcher
 
 ## Summary
 
-Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management from 2019; regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states (2023–2024); management of 200+ PRAC 202/811 units across Minnesota (2024–2025). Since 2025, full-time independent research in social contract theory and the separation of powers, and the author of an independently published compliance test for separation-of-powers questions. Also the owner of a small-business consultancy. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.
+Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management from 2019; regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states (2023–2024); management of 200+ PRAC 202/811 units across Minnesota (2024–2025). Independent researcher since 2016, part time in linguistics, ethics, and social contract theory, widening from 2020 into the law and the doctrine of qualified immunity; full time since 2025, and the author of an independently published compliance test for separation-of-powers questions and of a history of the immunity doctrine now in draft. Also the owner of a small-business consultancy. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.
 
 ## Skills
 
-- **Property management:** HUD PRAC 202/811 · Section 8 and tax-credit compliance · Leasing and renewals · Budgeting · Recertifications
+- **Property management:** HUD PRAC 202/811 · Section 8 and tax-credit compliance · Leasing and renewals · Budgeting · Recertifications · HUD and city inspections
 
-- **Software:** AppFolio · Yardi · OneSite · Standard office software
+- **Software:** AppFolio · Yardi · OneSite · Custom software development · Standard office software
 
 - **Operations:** Team leadership · Hiring and training · Policy and procedure development · Licensing · Payroll
 
@@ -30,11 +30,11 @@ Property-management professional and independent researcher. Twin Cities leasing
 
 ### Independent Researcher
 
-Full-time independent study · Edina, MN · Aug 2025 – Present
+Independent study · Edina, MN · 2016 – Present
 
-Social contract theory and the separation of powers, with particular attention to the works of Thomas Hobbes and Immanuel Kant.
+Part time from 2016, alongside property management; full time since August 2025. Linguistics, ethics, and social contract theory, with a focus on the Hobbesian and Kantian philosophies (2016–2020); the law, with a special focus on qualified immunity as applied to police officials (from 2020); and, from 2026, the genealogy of the immunity doctrine from Floyd v. Barker (1607) to Trump v. United States (2024) and the recovery of its primary-source record.
 
-- Author of “The Madisonian Separation of Powers Objective Compliance Test” (2026): a six-step objective compliance test for separation-of-powers questions, validated against 36 Supreme Court decisions spanning 154 years
+- Author of *The Subject's Unanswered Plea: A Restorative and Comparative History of Immunity* (working draft, 2026), a history of the immunity doctrine built on the 1607 Star Chamber cause file in The National Archives, whose transcription was verified against the originals at Kew by Christopher Whittick, MA FSA, former County Archivist of East Sussex
 
 ### Property Manager
 
@@ -118,11 +118,11 @@ Lion Rock Properties · St. Louis Park, MN · Mar 2019 – Oct 2019
 
 2016 – Present
 
-Social contract theory, with particular attention to the works of Thomas Hobbes and Immanuel Kant; full time since 2025.
+Part time from 2016, full time since 2025: linguistics, ethics, and social contract theory (Hobbes and Kant), then the law, qualified immunity, and the history of the immunity doctrine.
 
 ### Associate of Arts with Emphasis in Philosophy
 
-Normandale Community College · Bloomington, MN · 2014 – 2016
+Normandale Community College · Bloomington, MN · 2015 – 2016
 
 ### University of Minnesota Duluth
 
@@ -135,9 +135,3 @@ Duluth, MN · 2009 – 2011
 Member · since 2026
 
 The learned society for the history of English law, founded 1887.
-
-## Selected Work
-
-### The Madisonian Separation of Powers Objective Compliance Test
-
-Independent research · https://kirchner.cv/work/madisonian-test · 2026
