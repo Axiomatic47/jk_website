@@ -16,7 +16,7 @@ Property Management and Consulting Services · Independent Researcher
 
 ## Summary
 
-Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management from 2019; regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states (2023–2024); management of 200+ PRAC 202/811 units across Minnesota (2024–2025). Since 2025, full-time independent research in social contract theory and the separation of powers, and the author of an independently published compliance test for separation-of-powers questions. Also the owner of a small-business consultancy. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.
+Property-management professional and independent researcher. Twin Cities leasing, renewals, and site management from 2019; regional management of a HUD-assisted portfolio of 24 PRAC 202/811 properties and 525 units across five states (2023–2024); management of 200+ PRAC 202/811 units across Minnesota (2024–2025). Independent researcher since 2016, part time in linguistics, ethics, and social contract theory, widening from 2020 into the law and the doctrine of qualified immunity; full time since 2025, and the author of an independently published compliance test for separation-of-powers questions and of a history of the immunity doctrine now in draft. Also the owner of a small-business consultancy. Proficient in AppFolio, Yardi, OneSite, and standard office software, with a talent for communication, team leadership, creative problem solving, and refining systems and procedures for efficiency.
 
 ## Skills
 
@@ -30,9 +30,9 @@ Property-management professional and independent researcher. Twin Cities leasing
 
 ### Independent Researcher
 
-Full-time independent study · Edina, MN · Aug 2025 – Present
+Independent study · Edina, MN · 2016 – Present
 
-Social contract theory and the separation of powers, with particular attention to the works of Thomas Hobbes and Immanuel Kant.
+Part time from 2016, alongside property management; full time since August 2025. Linguistics, ethics, and social contract theory, with a focus on the Hobbesian and Kantian philosophies (2016–2020); the law, with a special focus on qualified immunity as applied to police officials (from 2020); and, from 2026, the genealogy of the immunity doctrine from Floyd v. Barker (1607) to Trump v. United States (2024) and the recovery of its primary-source record.
 
 - Author of “The Madisonian Separation of Powers Objective Compliance Test” (2026): a six-step objective compliance test for separation-of-powers questions, validated against 36 Supreme Court decisions spanning 154 years
 
@@ -118,7 +118,7 @@ Lion Rock Properties · St. Louis Park, MN · Mar 2019 – Oct 2019
 
 2016 – Present
 
-Social contract theory, with particular attention to the works of Thomas Hobbes and Immanuel Kant; full time since 2025.
+Part time from 2016, full time since 2025: linguistics, ethics, and social contract theory (Hobbes and Kant), then the law, qualified immunity, and the history of the immunity doctrine.
 
 ### Associate of Arts with Emphasis in Philosophy
 
