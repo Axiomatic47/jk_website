@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
 import { cv } from '@/lib/cv';
-import { Monogram } from './Monogram';
 import { RESEARCH_ARCHIVES, ARCHIVE_IDS } from '@/lib/research-archive';
 
 // Research is a menu (like the other site's header): the archives, Open
@@ -39,9 +38,8 @@ export function SiteHeader() {
   return (
     <header className="bg-ink text-on-ink no-print relative z-40">
       <div className="mx-auto max-w-site px-5 sm:px-8 h-16 flex items-center justify-between gap-6">
-        {/* JK monogram, linking home (owner 2026-09-14; mirrors kirchner.ink) */}
-        <Link href="/" className="flex items-center no-underline shrink-0" aria-label={`${cv.name} home`}>
-          <Monogram className="text-on-ink" />
+        <Link href="/" className="font-serif text-xl tracking-tight no-underline" style={{ fontWeight: 560 }}>
+          {cv.name.split(' ').slice(-1)[0]}<span className="text-accent">.</span>cv
         </Link>
         <nav aria-label="Primary" className="flex items-stretch h-full">
           <Link href="/" aria-current={path === '/' ? 'page' : undefined} className={itemClass(path === '/')}>About</Link>
