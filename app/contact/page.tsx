@@ -22,7 +22,7 @@ export default function Contact() {
         <ul className="space-y-4 text-base">
           <li className="flex items-center gap-3">
             <Mail className="h-5 w-5 text-accent" aria-hidden />
-            <a href={`mailto:${cv.email}`} className="underline">{cv.email}</a>
+            <a href={`mailto:${cv.email}`} className="inline-flex items-center min-h-11 lg:min-h-0 underline">{cv.email}</a>
           </li>
           {cv.location && (
             <li className="flex items-center gap-3">
@@ -33,7 +33,7 @@ export default function Contact() {
           {cv.links.map((l) => (
             <li key={l.url} className="flex items-center gap-3">
               <LinkIcon className="h-5 w-5 text-accent" aria-hidden />
-              <a href={l.url} rel="me noopener" className="underline">{l.label}</a>
+              <a href={l.url} rel="me noopener" className="inline-flex items-center min-h-11 lg:min-h-0 underline">{l.label}</a>
             </li>
           ))}
         </ul>
