@@ -27,6 +27,20 @@ from this repo 2026-09-12; shared code — a fix here belongs there too).
   `~/.config/kirchner-cv/private.json`, never inside a repo). The validator
   refuses these keys and phone-shaped strings at build time.
 
+## Home page and dark mode (owner 2026-09-15, as kirchner.ink)
+The home page is the CV viewer beside the portrait + General information
+card (`HomeLayout`, `InfoCard`); no headline, name, summary or availability
+badge is rendered — the resume PDF carries them. The viewer's bar (zoom,
+Download, Open in new tab) sits under the document; its corner grip widens
+it and the card drops below. `ArchivesShelf` puts the two manuscript archives
+and the Prynne epigraph beneath. Dark mode: Tailwind `darkMode: ['class']`;
+every colour token is an RGB triple variable in `app/globals.css` (`:root`
+light, `.dark` dark). Header/footer/info card use the `chrome` tokens (navy
+in both modes); `ink` is the foreground and flips. The header `ThemeToggle`
+cycles light / dark / system, remembered in localStorage `jk-theme`; the
+inline script in `app/layout.tsx` applies the class before first paint.
+Check a change in both modes.
+
 ## Stack
 Next.js (App Router, `output: 'export'` → `out/`), TypeScript, Tailwind,
 self-hosted fonts via next/font. No runtime server, no external scripts.
