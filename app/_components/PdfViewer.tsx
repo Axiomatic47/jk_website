@@ -25,14 +25,6 @@ interface PdfViewerProps {
   chrome?: 'standalone' | 'pane';
   /** toolbar-left content in pane chrome (the document tabs) */
   leading?: React.ReactNode;
-  /** a grip at the card's top-right corner scales the whole viewer: the
-      reader drags it outward and the card widens, the page refits to the new
-      width, and the well grows with it, so the text gets bigger in place
-      (owner 2026-09-14). The parent owns the width (`scaleWidth`) so it can
-      give the viewer the full row when it outgrows its column. */
-  resizable?: boolean;
-  scaleWidth?: number | null;
-  onScale?: (width: number | null) => void;
 }
 
 const MAX_BACKING_WIDTH = 3000;
@@ -40,7 +32,7 @@ const SETTLE_MS = 150;
 const ZOOMS = [60, 75, 90, 100, 125, 150, 200];
 type PageMeta = { num: number; aspect: number };
 
-export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 'standalone', leading, resizable = false, scaleWidth = null, onScale }: PdfViewerProps) {
+export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 'standalone', leading }: PdfViewerProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -178,34 +170,9 @@ export function PdfViewer({ src, title, downloadName, height = 'page', chrome = 
   );
 
   const wellStyle = height === 'fill' ? undefined : { height: wellHeight };
-
-  // corner grip: drag up-and-right to grow, down-and-left to shrink; the
-  // parent clamps and lays the card out at the requested width
-  const cardRef = useRef<HTMLDivElement>(null);
-  const onGripDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!onScale) return;
-    const startX = e.clientX, startY = e.clientY, startW = cardRef.current?.getBoundingClientRect().width ?? 0;
-    const el = e.currentTarget;
-    el.setPointerCapture(e.pointerId);
-    const move = (ev: PointerEvent) => onScale(Math.round(Math.max(360, startW + (ev.clientX - startX) - (ev.clientY - startY))));
-    const up = () => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerup', up); el.removeEventListener('pointercancel', up); };
-    el.addEventListener('pointermove', move); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
-  };
   const wellFill = height === 'fill' ? 'flex-1 min-h-0' : '';
   return (
-    <div ref={cardRef} className={cn('relative flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')} style={scaleWidth ? { width: scaleWidth, maxWidth: '100%' } : undefined}>
-      {resizable && height === 'page' && (
-        <div
-          role="separator"
-          aria-label="Resize the viewer"
-          title="Drag the corner to resize; double-click to reset"
-          onPointerDown={onGripDown}
-          onDoubleClick={() => onScale?.(null)}
-          className="absolute top-0 right-0 z-10 h-5 w-5 cursor-nesw-resize touch-none select-none"
-        >
-          <svg viewBox="0 0 20 20" className="h-5 w-5 text-accent" aria-hidden><path d="M8 3h9v9M12 3h5v5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
-        </div>
-      )}
+    <div className={cn('flex flex-col rounded-lg border border-rule bg-card shadow-card overflow-hidden', height === 'fill' && 'h-full')}>
       {/* toolbar */}
       <div className={cn('flex items-center gap-2 px-3 border-b border-rule bg-card no-print', pane ? 'h-11 shrink-0' : 'flex-wrap py-2')}>
         {pane && leading && <div className="flex-1 min-w-0 flex items-center">{leading}</div>}
