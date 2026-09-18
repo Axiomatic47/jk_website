@@ -41,19 +41,6 @@ cycles light / dark / system, remembered in localStorage `jk-theme`; the
 inline script in `app/layout.tsx` applies the class before first paint.
 Check a change in both modes.
 
-## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
-`public/uploads/research/<id>/` is the published set built by lawsofexistence.com's
-`scripts/sync-archives.mjs` and copied here verbatim (as on kirchner.ink; no builder
-here). Since 2026-09-18 the STAC 8/203/38 pages serve **Christopher Whittick's
-professional verification transcription** (doc kind `edition`, `PUBLISHED_KINDS` in
-`src/lib/research-archive.ts`) in place of the owner's per-leaf transcripts, on his
-written agreement of 18 Sep 2026 and the owner's word. Rules as kirchner.ink's charter:
-credit reads exactly "Professional verification transcription by Christopher Whittick"
-wherever his text shows; his licence is the basis for his text — never print the Open
-Government Licence over it (cite the record as "The National Archives, ref. STAC
-8/203/38"); the owner's transcripts stay in the library, unserved. Sibling commits are
-named in each commit here.
-
 ## Analytics — first-party, no third party (owner 2026-09-16)
 The site counts its own page views, the same code as kirchner.ink (ink_site
 e4b7cf5..a3951ff): `app/_components/Analytics.tsx` posts `{p, r, w}` to the

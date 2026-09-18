@@ -19,9 +19,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!c) return {};
   return {
     title: `${c.leafLabel} ${leafId} — ${c.ref}`,
-    description: c.edition
-      ? `The ${c.leafLabel.toLowerCase()} image beside its transcription (PDF) — ${c.edition.credit.toLowerCase()}.`
-      : `The ${c.leafLabel.toLowerCase()} image; the transcription follows.`,
+    description: 'Working diplomatic transcription — leaf image, line index, and transcription (PDF).',
     alternates: { canonical: `/research/${archiveId}/leaf/${leafId}` },
   };
 }
