@@ -41,6 +41,33 @@ cycles light / dark / system, remembered in localStorage `jk-theme`; the
 inline script in `app/layout.tsx` applies the class before first paint.
 Check a change in both modes.
 
+## Analytics — first-party, no third party (owner 2026-09-16)
+The site counts its own page views, the same code as kirchner.ink (ink_site
+e4b7cf5..a3951ff): `app/_components/Analytics.tsx` posts `{p, r, w}` to the
+site's own `/api/hit` (edge function `netlify/edge-functions/hit.js` →
+`netlify/lib/analytics-hit.mjs`), one Blobs record per view; the hourly
+scheduled function `netlify/functions/analytics-rollup.mjs` folds them into
+`day/<day>.json`; the console reads them at `/admin/analytics`. Design, data
+model and gates: `docs/ANALYTICS.md`. Rules:
+- **Recorded per view**: normalized path, referrer HOST (first load only),
+  country, device class, hour (owner's zone, `ANALYTICS_TZ`), and a visitor
+  hash of `sha256(daily salt · host · ip · ua)` that dies with the day's salt at
+  day close. **Never**: IP, user agent, query strings, fragments, anything under
+  `/admin`. **Never counted**: bots, prefetches, `Sec-GPC: 1`, the Privacy
+  page's off switch (`localStorage jk-analytics`), localhost.
+- The store name follows the deploy context (`analytics`,
+  `analytics-branch-deploy`, `analytics-deploy-preview`): test on a branch deploy
+  freely, production numbers are production's.
+- The roll-up is the only writer of `day/*.json` (lock + etag + `pending_delete`
+  guard); the edge function writes raws and the salt only. Do not add a second
+  writer.
+- The Privacy page states exactly this; a change to what is recorded is a change
+  to that page in the same commit.
+- Gates: `npm run test:analytics`, `npm run test:edge` (Deno), `npm run test:console`,
+  lint, build. The edge and core modules are Web-standard (no `node:` imports) so
+  Deno and Node run the same files — keep them that way. A fix here belongs in
+  ink_site too; name the sibling commit.
+
 ## Stack
 Next.js (App Router, `output: 'export'` → `out/`), TypeScript, Tailwind,
 self-hosted fonts via next/font. No runtime server, no external scripts.
