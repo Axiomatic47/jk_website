@@ -54,6 +54,17 @@ Government Licence over it (cite the record as "The National Archives, ref. STAC
 8/203/38"); the owner's transcripts stay in the library, unserved. Sibling commits are
 named in each commit here.
 
+## Social cards — one per page (owner 2026-09-21, as kirchner.ink)
+
+`npm run og:build` (manual-run: Pillow, poppler's `pdftoppm`, the Mac's fonts) writes `public/og/<key>.jpg`,
+1200×630 — `research-<archiveId>` and `research-<archiveId>-<leafId>`: a band of the leaf's own published
+image (the holder's licence covers the page; the card is a crop of it). `src/lib/og.server.ts` `ogImages(key,
+alt)` puts the card into `openGraph.images` + `twitter` in the research archive and leaf pages'
+`generateMetadata`; a page whose card is missing keeps its tags without an image and the build warns by key.
+Re-run after a new leaf; commit `public/og/`. The script and helper are byte-identical with kirchner.ink
+(sibling rule); kirchner.ink also carries `work-<slug>` cards, which this site has no pages for. Facebook
+caches a URL's card: after a deploy the owner re-scrapes at developers.facebook.com/tools/debug/.
+
 ## Analytics — first-party, no third party (owner 2026-09-16)
 The site counts its own page views, the same code as kirchner.ink (ink_site
 e4b7cf5..a3951ff): `app/_components/Analytics.tsx` posts `{p, r, w}` to the
