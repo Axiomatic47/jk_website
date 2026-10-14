@@ -102,3 +102,22 @@ Gates before "done": `npm run build` (validate-cv → tsc → next build) and
 Domains at Namecheap; DNS and hosting on Netlify (team axiomatic47). Mail for
 joseph@kirchner.cv is Zoho (same as the other domains). The www redirect
 lives in netlify.toml; kirchner.ink moved to its own Netlify project 2026-09-12.
+
+## Construction mode (owner 2026-10-14: "open up to an under construction page only")
+`site-mode.json` (repo root) is the switch: `"mode": "construction"` or `"live"`. In construction
+mode `next.config.ts` routes ONLY the `*.construction.*` files under `app/` — `layout`, `page`,
+`not-found` — so the export is the construction page alone
+(`app/_components/UnderConstruction.tsx`: the monogram and theme toggle in the chrome, the name and
+headline, the word that the site is being rebuilt, the email; no navigation), every other address
+answering it as the 404 page; `scripts/site-mode.mjs --prune` (the build's last step) then trims
+`out/` to that page and what it needs — `_next/`, `__forms/` (the readings form Netlify detects at
+deploy), `robots.txt` — writes `sitemap.xml` naming `/` alone (a metadata route under the
+construction extension is one Next cannot resolve) and asserts the result: no resume, works,
+uploads, pdf.js or OG images are served. The live route files stay in place, untouched, and
+nothing leaves the repo. OUTSIDE the switch, by design: the Netlify DNS zone (Zoho mail for
+joseph@kirchner.cv — the MX, SPF and DKIM records; a deploy never touches DNS), the functions (the
+admin console, moderation, the analytics rollup, the submission hook), the edge function, and
+Netlify Forms (the readings form stays detectable from `public/__forms/open-reading.html`). To
+flip back: `"mode": "live"`, build, integrate. Gates in construction mode: `npm run build` (ends
+with the prune's own assertions) and `npm run lint`. NEVER take the site down by removing the
+Netlify site or the domain from it — that is where the mail's DNS lives.

@@ -1,9 +1,21 @@
 import type { NextConfig } from 'next';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+// The site's mode (site-mode.json at the repo root, flipped by the owner): `live` builds the site;
+// `construction` (owner 2026-10-14) routes ONLY the *.construction.* files under app/ — layout, page,
+// not-found — so the export is the construction page alone, every other address its 404
+// copy; the live route files stay in place, untouched, for the flip back. scripts/site-mode.mjs
+// --prune (the build's last step) then trims out/ to what that page needs. The functions, the edge
+// function, the readings form's detection file and the DNS zone are outside this switch.
+const SITE_MODE = JSON.parse(readFileSync(join(process.cwd(), 'site-mode.json'), 'utf8')).mode as string;
+if (SITE_MODE !== 'live' && SITE_MODE !== 'construction') throw new Error(`site-mode.json: mode must be "live" or "construction", not ${JSON.stringify(SITE_MODE)}`);
 
 // Static export: the whole site is plain HTML/CSS/JS under out/, served by
 // Netlify with no framework runtime. Redirects and headers live in netlify.toml.
 const nextConfig: NextConfig = {
   output: 'export',
+  ...(SITE_MODE === 'construction' ? { pageExtensions: ['construction.tsx', 'construction.ts'] } : {}),
   trailingSlash: false,
   images: { unoptimized: true },
   reactStrictMode: true,
