@@ -1,0 +1,5 @@
+{
+  "$comment": "The site's mode, flipped by the owner. 'live' builds the whole site. 'construction' (owner 2026-10-14) builds the construction page alone: next.config.ts routes only the *.construction.* files under app/ (layout, page, not-found) and scripts/site-mode.mjs --prune trims out/ to that page and what it needs, writing the one-page sitemap. Outside this switch by design: the Netlify DNS zone (mail), the functions, the edge function, the readings form's detection file. To flip back: \"live\", build, integrate.",
+  "mode": "construction",
+  "since": "2026-10-14"
+}

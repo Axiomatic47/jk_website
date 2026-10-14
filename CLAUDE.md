@@ -41,6 +41,30 @@ cycles light / dark / system, remembered in localStorage `jk-theme`; the
 inline script in `app/layout.tsx` applies the class before first paint.
 Check a change in both modes.
 
+## Research archives — the published set, and Whittick's edition (owner 2026-09-18)
+`public/uploads/research/<id>/` is the published set built by lawsofexistence.com's
+`scripts/sync-archives.mjs` and copied here verbatim (as on kirchner.ink; no builder
+here). Since 2026-09-18 the STAC 8/203/38 pages serve **Christopher Whittick's
+professional verification transcription** (doc kind `edition`, `PUBLISHED_KINDS` in
+`src/lib/research-archive.ts`) in place of the owner's per-leaf transcripts, on his
+written agreement of 18 Sep 2026 and the owner's word. Rules as kirchner.ink's charter:
+credit reads exactly "Professional verification transcription by Christopher Whittick"
+wherever his text shows; his licence is the basis for his text — never print the Open
+Government Licence over it (cite the record as "The National Archives, ref. STAC
+8/203/38"); the owner's transcripts stay in the library, unserved. Sibling commits are
+named in each commit here.
+
+## Social cards — one per page (owner 2026-09-21, as kirchner.ink)
+
+`npm run og:build` (manual-run: Pillow, poppler's `pdftoppm`, the Mac's fonts) writes `public/og/<key>.jpg`,
+1200×630 — `research-<archiveId>` and `research-<archiveId>-<leafId>`: a band of the leaf's own published
+image (the holder's licence covers the page; the card is a crop of it). `src/lib/og.server.ts` `ogImages(key,
+alt)` puts the card into `openGraph.images` + `twitter` in the research archive and leaf pages'
+`generateMetadata`; a page whose card is missing keeps its tags without an image and the build warns by key.
+Re-run after a new leaf; commit `public/og/`. The script and helper are byte-identical with kirchner.ink
+(sibling rule); kirchner.ink also carries `work-<slug>` cards, which this site has no pages for. Facebook
+caches a URL's card: after a deploy the owner re-scrapes at developers.facebook.com/tools/debug/.
+
 ## Analytics — first-party, no third party (owner 2026-09-16)
 The site counts its own page views, the same code as kirchner.ink (ink_site
 e4b7cf5..a3951ff): `app/_components/Analytics.tsx` posts `{p, r, w}` to the
@@ -78,3 +102,22 @@ Gates before "done": `npm run build` (validate-cv → tsc → next build) and
 Domains at Namecheap; DNS and hosting on Netlify (team axiomatic47). Mail for
 joseph@kirchner.cv is Zoho (same as the other domains). The www redirect
 lives in netlify.toml; kirchner.ink moved to its own Netlify project 2026-09-12.
+
+## Construction mode (owner 2026-10-14: "open up to an under construction page only")
+`site-mode.json` (repo root) is the switch: `"mode": "construction"` or `"live"`. In construction
+mode `next.config.ts` routes ONLY the `*.construction.*` files under `app/` — `layout`, `page`,
+`not-found` — so the export is the construction page alone
+(`app/_components/UnderConstruction.tsx`: the monogram and theme toggle in the chrome, the name and
+headline, the word that the site is being rebuilt, the email; no navigation), every other address
+answering it as the 404 page; `scripts/site-mode.mjs --prune` (the build's last step) then trims
+`out/` to that page and what it needs — `_next/`, `__forms/` (the readings form Netlify detects at
+deploy), `robots.txt` — writes `sitemap.xml` naming `/` alone (a metadata route under the
+construction extension is one Next cannot resolve) and asserts the result: no resume, works,
+uploads, pdf.js or OG images are served. The live route files stay in place, untouched, and
+nothing leaves the repo. OUTSIDE the switch, by design: the Netlify DNS zone (Zoho mail for
+joseph@kirchner.cv — the MX, SPF and DKIM records; a deploy never touches DNS), the functions (the
+admin console, moderation, the analytics rollup, the submission hook), the edge function, and
+Netlify Forms (the readings form stays detectable from `public/__forms/open-reading.html`). To
+flip back: `"mode": "live"`, build, integrate. Gates in construction mode: `npm run build` (ends
+with the prune's own assertions) and `npm run lint`. NEVER take the site down by removing the
+Netlify site or the domain from it — that is where the mail's DNS lives.
