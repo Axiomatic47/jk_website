@@ -107,13 +107,20 @@ lives in netlify.toml; kirchner.ink moved to its own Netlify project 2026-09-12.
 `site-mode.json` (repo root) is the switch: `"mode": "construction"` or `"live"`. In construction
 mode `next.config.ts` routes ONLY the `*.construction.*` files under `app/` — `layout`, `page`,
 `not-found` — so the export is the construction page alone
-(`app/_components/UnderConstruction.tsx`: the monogram and theme toggle in the chrome, the name and
-headline, the word that the site is being rebuilt, the email; no navigation), every other address
-answering it as the 404 page; `scripts/site-mode.mjs --prune` (the build's last step) then trims
+(`app/_components/UnderConstruction.tsx`: the two words UNDER CONSTRUCTION, centred, and NOTHING
+ELSE — no monogram, toggle, name, headline, email, footer or link; the title "Under construction";
+no Person record — the owner's second word of 2026-10-14: "Nothing should be viewable - only UNDER
+CONSTRUCTION"; the prune asserts neither the name nor the email is in the page), every other
+address answering it as the 404 page; `scripts/site-mode.mjs --prune` (the build's last step) then trims
 `out/` to that page and what it needs — `_next/`, `__forms/` (the readings form Netlify detects at
-deploy), `robots.txt` — writes `sitemap.xml` naming `/` alone (a metadata route under the
-construction extension is one Next cannot resolve) and asserts the result: no resume, works,
-uploads, pdf.js or OG images are served. The live route files stay in place, untouched, and
+deploy) — writes `robots.txt` and `_headers`, no sitemap, and asserts the result: no resume, works,
+uploads, pdf.js or OG images are served. HIDDEN FROM SEARCH (owner 2026-10-14, "Hide it from
+search"): the construction layout's metadata is `noindex, nofollow`, `_headers` puts
+`X-Robots-Tag: noindex, nofollow` on every response, and there is no sitemap; `robots.txt` keeps
+ALLOWING the crawl on purpose — a crawler that is blocked cannot read the noindex and leaves the
+address listed. (A sitemap metadata route under the construction extension is one Next cannot
+resolve at build; nothing is lost, a hidden page lists none.) The owner's optional fast path:
+Search Console's temporary removal of kirchner.cv/. The live route files stay in place, untouched, and
 nothing leaves the repo. OUTSIDE the switch, by design: the Netlify DNS zone (Zoho mail for
 joseph@kirchner.cv — the MX, SPF and DKIM records; a deploy never touches DNS), the functions (the
 admin console, moderation, the analytics rollup, the submission hook), the edge function, and
